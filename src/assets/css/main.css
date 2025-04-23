@@ -1,0 +1,19 @@
+@import 'tailwindcss';
+@import 'tailwindcss-primeui';
+@import 'primeicons/primeicons.css';
+
+html {
+  margin: 0 auto;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+
+  font-size: 14px;
+}
+
+:root {
+  --p-breadcrumb-background: unset;
+  --p-breadcrumb-item-color: var(--p-text-color);
+}

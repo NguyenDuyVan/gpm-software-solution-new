@@ -1,4 +1,4 @@
-import type { Product } from '~/types';
+import type { Product } from '~/src/services/types';
 import { appFetcher } from '../fetcher';
 
 const createQueryConfig = (endpoint: string) => {

@@ -1,0 +1,300 @@
+{
+  "menu_items": {
+    "dashboard": "Tổng quan",
+    "buy": "Mua license",
+    "license": "Quản lý license",
+    "affiliate": "Affiliate",
+    "support": "Hỗ trợ"
+  },
+  "common": {
+    "no_data": "Không có dữ liệu để hiển thị",
+    "loading": "Đang tải",
+    "load_more": "Xem thêm",
+    "notify": {
+      "title": "Thông báo",
+      "confirm": "Đồng ý",
+      "reject": "Không",
+      "warring": "Xác nhận"
+    }
+  },
+  "license": {
+    "title": "License của tôi",
+    "data_table1": {
+      "license": "License",
+      "software": "Phần mềm",
+      "buy_date": "Ngày mua",
+      "device": "Thiết bị",
+      "title": {
+        "change_license": "Đổi license",
+        "reset": "Đặt lại danh sách thiết bị",
+        "download": "Tải xuống",
+        "buy_more": "Mua thêm module hoặc thiết bị"
+      }
+    },
+    "modal_sublicense": {
+      "title": "Quản lý sub-license",
+      "can_not_create": "Bạn không thể tạo thêm sub-license nữa.",
+      "create_sub": "Tạo sub license",
+      "can_create": {
+        "previos": "Bạn có thể tạo thêm",
+        "next": " sub-license."
+      },
+      "description": "Sub-license là license con, chỉ active được trên một thiết bị duy nhất. Khi nhất nút \"Tạo sub license\" các sub-license sẽ được sinh ra với số lượng đúng bằng số lượng giới hạn thiết bị trên license cha. Nếu license cha đã có sẵn sub-license, hệ thống chỉ tạo thêm nếu chưa đủ theo số giới hạn máy.",
+      "table": {
+        "sub_license": "Sub license",
+        "login_ver": "Login",
+        "title": "Đổi license"
+      }
+    },
+    "modal_upgrade": {
+      "title": "Nâng cấp license",
+      "buy_more_modules": "Mua thêm module",
+      "buy_more_devices": "Mua thêm thiết bị",
+      "total": "Tổng",
+      "gen_qr": "Sinh QR thanh toán",
+      "content": "Hệ thống sẽ tự động xử lý sau 1 đến 3 phút kể từ khi chuyển khoản ! Sau đó vui lòng F5 lại trang để kiểm tra"
+    },
+    "confirm": {
+      "change_license": {
+        "content": "Sau khi đổi license, các máy đang kích hoạt sẽ phải nhập lại license mới để tiếp tục sử dụng. Bạn có muốn tiếp tục?",
+        "success": "Đổi license thành công!"
+      },
+      "reset_device": {
+        "content": "Sau 72h kể từ khi reset license bạn mới có tiếp thực hiện lần tiếp theo. Bạn có muốn tiếp tục?",
+        "success": "Đã reset license về trạng thái ban đầu"
+      },
+      "show_upgrade": "License này không còn tính năng để nâng cấp",
+      "create_sub_license": "Xác nhận tạo sub-license cho license? Sau khi tạo, license cha sẽ không thể sử dụng, thay vào đó sẽ sử dụng sub-license để kích hoạt",
+      "gen_qr": "Giới hạn số lượng thiết bị / license là {upDeviceMax_}. Vui lòng giảm số máy cần mua xuống!"
+    },
+    "document_title": "License đã mua - User site"
+  },
+  "dashboard_page": {
+    "title": "Bảng điều khiển",
+    "table": {
+      "license_purchased": "License đã mua",
+      "create_at": "Thời gian tạo tài khoản",
+      "information": "Thông tin đăng nhập",
+      "type_account": "Loại tài khoản"
+    },
+    "document_title": "Tổng quan - User site"
+  },
+  "buy_page": {
+    "title": "Mua license",
+    "software_info": {
+      "title": "Thông tin phần mềm",
+      "software_name": {
+        "label": "Phần mềm",
+        "placeholder": "-- Chọn phần mềm"
+      },
+      "package": "Gói phần mềm",
+      "aff_code": "Mã giới thiệu nếu có",
+      "total": "Tổng",
+      "select_payment_method": "Chọn phương thức thanh toán",
+      "payment_method": "Phương thức thanh toán",
+      "bank": "Chuyển khoản ngân hàng"
+    },
+    "customer_info": {
+      "title": "Thông tin khách hàng",
+      "desc": "Vui lòng nhập đầy đủ thông tin cá nhân để chúng tôi có thể hỗ trợ và bảo hành một cách tốt nhất. Thông tin của bạn cũng sẽ được lưu cho các lần thanh toán sau, vì vậy bạn chỉ cần nhập một lần đầu tiên.",
+      "user_name": "Họ và tên",
+      "phone": "Số điện thoại",
+      "not_in_vi": "Tôi không ở Việt Nam",
+      "province": {
+        "label": "Tỉnh / Thành phố",
+        "placeholder": "-- Chọn tỉnh thành"
+      },
+      "district": {
+        "label": "Huyện",
+        "placeholder": "-- Chọn huyện"
+      },
+      "ward": {
+        "label": "Xã / phường",
+        "placeholder": "-- Chọn xã phường"
+      },
+      "address": "Địa chỉ"
+    },
+    "tax": {
+      "tax_code": "Mã số thuế"
+    },
+    "term": {
+      "title": "Điều khoản mua phần mềm",
+      "agree_rule": "Tôi đã đọc và đồng ý điều khoản trên",
+      "payment": "Thanh toán",
+      "next": "Tiếp tục",
+      "back": "Quay lại"
+    },
+    "noti": {
+      "success": "Order created successfully!"
+    },
+    "document_title": "Mua license - User site"
+  },
+  "affiliate_page": {
+    "account_status": {
+      "verified": "Đã xác minh",
+      "unverified": "Chưa xác minh"
+    },
+    "aff_code": "Mã giới thiệu",
+    "withdraw": "Rút tiền",
+    "withdraw_history": "Lịch sử rút tiền",
+    "aff_history": "Lịch sử affiliate",
+    "table": {
+      "time": "Thời gian",
+      "customer": "Khách hàng",
+      "software": "Phần mềm",
+      "aff_point": "Điểm AFF"
+    },
+    "noti": {
+      "coppied": "Đã copy vào bộ nhớ"
+    }
+  },
+  "affiliate_withdraw": {
+    "title": "Lệnh rút tiền",
+    "desc": "Số Affiliate point tối thiểu để đặt lệnh rút tiền là 500 và là bội số của 10",
+    "btn_withdraw": "Đặt lệnh rút tiền",
+    "account_withdraw": "Tài khoản nhận tiền:",
+    "bank_info": "Chưa có thông tin về tài khoản của bạn",
+    "table": {
+      "time": "Thời gian đặt lệnh",
+      "withdraw_point": "Số affiliate point",
+      "status": "Trạng thái",
+      "detail": "Chi tiết"
+    },
+    "noti": {
+      "send_withdraw": {
+        "error1": "Số điểm rút phải lớn hơn 500 point",
+        "error2": "Vui lòng cập nhật tài khoản nhận tiền",
+        "error3": "Số điểm rút phải là bội số của 10"
+      },
+      "confir_pass": {
+        "success": "Tạo lệnh rút tiền thành công",
+        "error": "Mật khẩu nhập lại không chính xác"
+      }
+    },
+    "modal_confirm": {
+      "title": "Xác nhận lại mật khẩu",
+      "content": "Một số tính năng yêu cầu bạn phải nhập lại mật khẩu để thực hiện",
+      "confirm": {
+        "accept": "Xác nhận",
+        "exit": "Thoát"
+      }
+    }
+  },
+  "support_page": {
+    "title": "Trước khi gửi yêu cầu hỗ trợ, vui lòng đọc kĩ các điều khoản của chúng tôi",
+    "content_first": " Mỗi license chỉ có duy nhất một chủ sở hữu đồng thời là người được hỗ trợ duy nhất. Điều đó có nghĩa nếu bạn mua lại license, hoặc là người dùng chung license có số máy lớn hơn một đều sẽ không được hỗ trợ, trong trường hợp đó, vui lòng sử dụng các tài liệu và thông qua các cộng đồng của chúng tôi.",
+    "content_second": "Thời gian phản hồi sẽ tùy thuộc vào lượng người dùng đang yêu cầu hỗ trợ, trung bình từ 30 phút tới 2 giờ",
+    "contact": "Liên hệ Page",
+    "document_title": "Hỗ trợ - User site"
+  },
+  "not_found_page": {
+    "content": "Đường link này không tồn tại, vui lòng bấm nút HOME để trở về giao diện chính"
+  },
+  "transfer_page": {
+    "title": "Thông tin đơn hàng",
+    "warring_secound": "Thay đổi tài khoản nhận tiền từ ngày 10-06-2024",
+    "software_name": "Tên phần mềm:",
+    "price": "Giá tiền",
+    "transfer_content": "Nội dung chuyển khoản:",
+    "bank_account_number": "Tài khoản người nhận:",
+    "document_title": "Thông tin đơn hàng - User site"
+  },
+  "affiliate_detail_page": {
+    "title": "Chi tiết lệnh rút tiền",
+    "content": "Chúng tôi sẽ xử lý lệnh rút tiền vào cuối ngày",
+    "withdraw_point": "Điểm rút: ",
+    "status": "Trạng thái: ",
+    "result": "Kết quả:",
+    "result_content": "Chờ xử lý"
+  },
+  "context_menu": {
+    "account_infor": "Thông tin",
+    "security": "Bảo mật",
+    "logout": "Đăng xuất",
+    "logout_confirm": "Bạn muốn đăng xuất khỏi hệ thống?"
+  },
+  "my_account": {
+    "title": "Tài khoản của tôi",
+    "account_infor": {
+      "title": "1. Thông tin người dùng",
+      "display_name": "Tên hiển thị",
+      "facebook": "Link hỗ trợ facebook",
+      "telegram": "Link hỗ trợ Telegram",
+      "is_change_password": " Đổi mật khẩu",
+      "password": "Mật khẩu mới",
+      "repassword": "Mật lại mật khẩu mới",
+      "phone_number": "Số điện thoại",
+      "not_in_vi": "Tôi không ở Việt Nam",
+      "province": {
+        "label": "Tỉnh / Thành phố",
+        "placeholder": "-- Chọn tỉnh thành"
+      },
+      "district": {
+        "label": "Huyện",
+        "placeholder": "-- Chọn huyện"
+      },
+      "ward": {
+        "label": "Xã / phường",
+        "placeholder": "-- Chọn xã phường"
+      },
+      "address": "Địa chỉ",
+      "tax_code": "Mã số thuế (nếu cần xuất hóa đơn)"
+    },
+    "affiliate_infor": {
+      "title": "2. Affiliate của tôi",
+      "aff_code": "Mã affiliate",
+      "aff_point": "Điểm affiliate",
+      "payment_bank_id": "Tài khoản nhận tiền",
+      "payment_bank_user_name": "Tên người nhận",
+      "bank_name": "Tên ngân hàng",
+      "bank_name_placeholder": "-- Chọn ngân hàng"
+    },
+    "update": "Cập nhật",
+    "cancel": "Hủy bỏ",
+    "noti": {
+      "pass_required": "Mật khẩu phải có từ 6 kí tự",
+      "pass_wrong": "Nhập lại mật khẩu không chính xác",
+      "success": "Cập nhật thành công",
+      "province_required": "Vui lòng chọn tỉnh/thành phố",
+      "district_required": "Vui lòng chọn huyện",
+      "ward_required": "Vui chọn xã phường",
+      "email_required": "Vui nhập địa chỉ email",
+      "software_name_required": "Vui chọn thông tin phần mềm"
+    }
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "content": "Chào mừng trở lại! Vui lòng nhập thông tin",
+    "pass": "Mật khẩu",
+    "remember": "Ghi nhớ đăng nhập",
+    "forgot": "Quên mật khẩu",
+    "submit": "Đăng nhập",
+    "re_signup": "Bạn chưa có tài khoản?",
+    "sign_up": "Đăng ký",
+    "email_required": "Vui lòng nhập email",
+    "pass_invalid": "Mật khẩu phải có độ dài ít nhất 6 ký tự"
+  },
+  "sign_up": {
+    "title": "Đăng ký",
+    "content": "Đăng ký tài khoản! Vui lòng nhập thông tin",
+    "pass": "Mật khẩu",
+    "repassword": "Nhập lại mật khẩu",
+    "full_name": "Họ tên",
+    "fb_name": "Tên tài khoản facebook",
+    "fb_link": "Facebook URL",
+    "term": "Việc tạo tài khoản đồng nghĩa với việc bạn đồng ý với các Điều khoản & Điều kiện và Chính sách quyền riêng tư của chúng tôi",
+    "submit": "Đăng ký",
+    "re_signup": "Bạn đã có tài khoản?",
+    "sign_in": "Đăng nhập",
+    "email_required": "Vui lòng nhập email hợp lệ",
+    "pass_invalid": "Mật khẩu phải có độ dài ít nhất 6 ký tự",
+    "repass_invalid": "2 mật khẩu không trùng nhau"
+  },
+  "forgot": {
+    "title": "Quên mật khẩu",
+    "content": "Chúng tôi sẽ gửi mật khẩu mới vào hòm thư email của bạn!",
+    "remember": "Đã nhớ mật khẩu",
+    "sign_in": "Đăng nhập",
+    "email_required": "Vui lòng nhập email"
+  }
+}

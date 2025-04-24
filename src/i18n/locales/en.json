@@ -1,0 +1,297 @@
+{
+  "menu_items": {
+    "dashboard": "Dashboard",
+    "buy": "Buy license",
+    "license": "License Management",
+    "affiliate": "Affiliate",
+    "support": "Support"
+  },
+  "common": {
+    "no_data": "No data to display",
+    "loading": "Loading",
+    "load_more": "Load more",
+    "notify": {
+      "title": "Information",
+      "confirm": "Yes",
+      "reject": "No",
+      "warring": "Confirm"
+    }
+  },
+  "license": {
+    "title": "My license",
+    "data_table1": {
+      "license": "License",
+      "software": "Software",
+      "buy_date": "Buy date",
+      "device": "Device",
+      "title": {
+        "change_license": "Change license",
+        "reset": "Reset device list",
+        "download": "Download",
+        "buy_more": "Buy additional modules or devices"
+      }
+    },
+    "modal_sublicense": {
+      "title": "Sub-license management",
+      "can_not_create": "You cannot create additional sub-license.",
+      "create_sub": "Create sub-license",
+      "can_create": {
+        "previos": "You can create more",
+        "next": " sub-license."
+      },
+      "description": "Sub-license is a child license, which can only be activated on a single device. When clicking the \"Create sub license\" button, sub-licenses will be generated with the number of devices equal to the limit on the parent license. If the parent license already has a sub-license, the system will only create more if it is not enough according to the limit on the number of devices.",
+      "table": {
+        "sub_license": "Sub license",
+        "login_ver": "Login",
+        "title": "Change license"
+      }
+    },
+    "modal_upgrade": {
+      "title": "Upgrade license",
+      "buy_more_modules": "Buy more modules",
+      "buy_more_devices": "Buy more devices",
+      "total": "Total",
+      "gen_qr": "Generate QR payment",
+      "content": "The system will automatically process after 1 to 3 minutes from the transfer! Then please F5 the page to check."
+    },
+    "confirm": {
+      "change_license": {
+        "content": "After changing the license, the activated machines will have to re-enter the new license to continue using. Do you want to continue?",
+        "success": "License change successfully!"
+      },
+      "reset_device": {
+        "content": "You can only do it again 72 hours after resetting your license. Do you want to continue?",
+        "success": "License has been reset to its original state."
+      },
+      "show_upgrade": "This license no longer has features to upgrade.",
+      "create_sub_license": "Confirm creating sub-license for license? The parent license will not be used, instead the sub-license will be used for activation.",
+      "gen_qr": "Device / license limit is {upDeviceMax_}. Please reduce the number of machines you want to buy!"
+    },
+    "document_title": "License purchased - User site"
+  },
+  "dashboard_page": {
+    "title": "Dashboard",
+    "table": {
+      "license_purchased": "License purchased",
+      "create_at": "Created at",
+      "information": "Login information",
+      "type_account": "Account type"
+    },
+    "document_title": "Dashboard - User site"
+  },
+  "buy_page": {
+    "title": "Purchase License",
+    "software_info": {
+      "title": "Software information",
+      "software_name": {
+        "label": "Software",
+        "placeholder": "-- Select Software"
+      },
+      "package": "Software package",
+      "aff_code": "Referral code (if any)",
+      "total": "Total",
+      "select_payment_method": "Select payment method",
+      "payment_method": "Payment method",
+      "bank": "Bank transfer"
+    },
+    "customer_info": {
+      "title": "Customer information",
+      "desc": "Please enter complete personal information so that we can provide the best support and warranty. Your information will also be saved for future payments, so you only need to enter it once.",
+      "user_name": "Full name",
+      "phone": "Phone number",
+      "not_in_vi": "I am not in Vietnam",
+      "province": {
+        "label": "Province / City",
+        "placeholder": "-- Select province/city"
+      },
+      "district": {
+        "label": "District",
+        "placeholder": "-- Select district"
+      },
+      "ward": {
+        "label": "Ward / Commune",
+        "placeholder": "-- Select ward/commune"
+      },
+      "address": "Address"
+    },
+    "tax": {
+      "tax_code": "Tax code"
+    },
+    "term": {
+      "title": "Software purchase terms",
+      "agree_rule": "I have read and agree to the above terms",
+      "payment": "Payment",
+      "next": "Next",
+      "back": "Go back"
+    },
+    "noti": {
+      "success": "Tạo đơn hàng thành công"
+    },
+    "document_title": "Purchase license - User site"
+  },
+  "affiliate_page": {
+    "account_status": {
+      "verified": "Verified",
+      "unverified": "Unverified"
+    },
+    "aff_code": "Referral code",
+    "withdraw": "Withdraw",
+    "withdraw_history": "Withdrawal history",
+    "aff_history": "Affiliate history",
+    "table": {
+      "time": "Created time",
+      "customer": "Customer",
+      "software": "Software",
+      "aff_point": "AFF points"
+    },
+    "noti": {
+      "coppied": "Copied to clipboard"
+    }
+  },
+  "affiliate_withdraw": {
+    "title": "Withdrawal request",
+    "desc": "The minimum Affiliate points required to place a withdrawal request is 500, and it must be a multiple of 10.",
+    "btn_withdraw": "Place withdrawal request",
+    "account_withdraw": "Receiving account:",
+    "bank_info": "No account information available",
+    "table": {
+      "time": "Request time",
+      "withdraw_point": "Affiliate points",
+      "status": "Status",
+      "detail": "Details"
+    },
+    "noti": {
+      "send_withdraw": {
+        "error1": "Withdrawal points must be greater than 500 points",
+        "error2": "Please update the receiving account information",
+        "error3": "Withdrawal points must be a multiple of 10"
+      },
+      "confir_pass": {
+        "success": "Withdrawal request created successfully",
+        "error": "The re-entered password is incorrect"
+      }
+    },
+    "modal_confirm": {
+      "title": "Confirm password",
+      "content": "Some features require you to re-enter your password to proceed",
+      "confirm": {
+        "accept": "Confirm",
+        "exit": "Exit"
+      }
+    }
+  },
+  "support_page": {
+    "title": "Before submitting a support request, please read our terms carefully",
+    "content_first": "Each license has only one owner and that owner is the only person entitled to support. This means that if you purchase a license from someone else or if it is a shared license used on more than one machine, you will not be eligible for support. In such cases, please refer to our documentation and engage with our community for assistance.",
+    "content_second": "Response time will depend on the volume of support requests, typically ranging from 30 minutes to 2 hours.",
+    "contact": "Contact Page",
+    "document_title": "Support - User Site"
+  },
+  "transfer_page": {
+    "title": "Order information",
+    "warring_secound": "Bank account for receiving payments changed from 10-06-2024.",
+    "software_name": "Software name:",
+    "price": "price",
+    "transfer_content": "Transfer details:",
+    "bank_account_number": "Recipient's account number:",
+    "document_title": "Order information - User site"
+  },
+  "affiliate_detail_page": {
+    "title": "Withdrawal order details",
+    "content": "We will process the withdrawal order by the end of the day.",
+    "withdraw_point": "Withdrawal points: ",
+    "status": "Status: ",
+    "result": "Result:",
+    "result_content": "Pending"
+  },
+  "context_menu": {
+    "account_infor": "My account",
+    "security": "Security",
+    "logout": "Logout",
+    "logout_confirm": "Do you want to log out of the system?"
+  },
+  "my_account": {
+    "title": "My account",
+    "account_infor": {
+      "title": "1. User information",
+      "display_name": "Display name",
+      "facebook": "Facebook support link",
+      "telegram": "Telegram support link",
+      "is_change_password": "Change password",
+      "password": "New password",
+      "repassword": "Confirm new password",
+      "phone_number": "Phone number",
+      "not_in_vi": "I am not in Vietnam",
+      "province": {
+        "label": "Province / city",
+        "placeholder": "-- Select province"
+      },
+      "district": {
+        "label": "District",
+        "placeholder": "-- Select district"
+      },
+      "ward": {
+        "label": "Ward / commune",
+        "placeholder": "-- Select ward"
+      },
+      "address": "Address",
+      "tax_code": "Tax code (if invoicing is required)"
+    },
+    "affiliate_infor": {
+      "title": "2. My affiliate",
+      "aff_code": "Affiliate code",
+      "aff_point": "Affiliate points",
+      "payment_bank_id": "Payment account",
+      "payment_bank_user_name": "Recipient's name",
+      "bank_name": "Bank name",
+      "bank_name_placeholder": "-- Select a bank"
+    },
+    "update": "Update",
+    "cancel": "Cancel",
+    "noti": {
+      "pass_required": "Password must be at least 6 characters",
+      "pass_wrong": "Password confirmation does not match",
+      "success": "Update successful",
+      "province_required": "Province is required",
+      "district_required": "District is required",
+      "ward_required": "Ward is required",
+      "email_required": "Email is required",
+      "software_name_required": "Please select software information"
+    }
+  },
+  "login": {
+    "title": "Sign In to your Account",
+    "content": "Welcome back! Please enter your detail",
+    "pass": "Password",
+    "remember": "Remember me",
+    "forgot": "Forgot Password?",
+    "submit": "Đăng nhập",
+    "re_signup": "Don’t have an account?",
+    "sign_up": "Sign Up",
+    "email_required": "Please enter email",
+    "pass_invalid": "Password must be at least 6 characters"
+  },
+  "sign_up": {
+    "title": "Sign up",
+    "content": "Welcome back! Please enter your detail",
+    "pass": "password",
+    "repassword": "Re enter password",
+    "full_name": "Full name",
+    "fb_name": "Facebook name",
+    "fb_link": "Facebook profile URL",
+    "term": "By creating an account means you agree to the Terms & Conditions and our Privacy Policy",
+    "submit": "Sign Up",
+    "re_signup": "Already have an account?",
+    "sign_in": "Sign In",
+    "email_required": "Email is not valid",
+    "pass_invalid": "Password must be at least 6 characters",
+    "repass_invalid": "Re-enter password does not match"
+  },
+  "forgot": {
+    "title": "Forgot password",
+    "content": "We will send a new password to your email!",
+    "remember": "Remember your password?",
+    "sign_in": "Login here",
+    "email_required": "Please enter email"
+  }
+}

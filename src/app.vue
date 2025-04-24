@@ -7,7 +7,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { setGlobalToast } from '~/composables/api/fetcher';
+  import { setGlobalToast } from '@/composables/api/fetcher';
 
   const toast = useToast();
   setGlobalToast(toast);

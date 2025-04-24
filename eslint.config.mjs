@@ -11,6 +11,7 @@ export default withNuxt()
       'no-console': 'warn',
       'no-unused-vars': 'warn',
       'prettier/prettier': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
     plugins: { prettier: prettier },
   });

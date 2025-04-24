@@ -76,7 +76,7 @@
   import {
     useAuthMutation,
     type LoginPayloadType,
-  } from '~/composables/api/mutation/useAuthMutation';
+  } from '~/src/services/composables/api/mutation/useAuthMutation';
   import { zodResolver } from '@primevue/forms/resolvers/zod';
   import { z } from 'zod';
   import type { FormSubmitEvent } from '@primevue/forms/form';

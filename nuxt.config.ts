@@ -1,4 +1,3 @@
-import Aura from '@primeuix/themes/aura';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
@@ -31,28 +30,41 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
     '@primevue/nuxt-module',
-    '@hebilicious/vue-query-nuxt',
     '@nuxtjs/i18n',
     '@pinia/nuxt',
+    '@nuxtjs/color-mode',
   ],
-
+  colorMode: {
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '',
+    storage: 'localStorage', // or 'sessionStorage' or 'cookie'
+    storageKey: 'nuxt-color-mode',
+  },
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE,
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_URL,
     },
   },
-
-  alias: {
-    '@/': './src/',
-  },
-  css: ['./src/assets/css/main.css'],
+  css: ['@/assets/css/main.css'],
 
   components: [
     {
-      path: './src/components',
+      path: '@/components',
     },
   ],
 
+  imports: {
+    autoImport: true,
+    // Auto import config
+    dirs: [
+      'composables/api', // Automatically imports composables from this directory
+    ],
+  },
   i18n: {
     restructureDir: './src/i18n',
     locales: [
@@ -78,20 +90,15 @@ export default defineNuxtConfig({
 
   primevue: {
     autoImport: true,
-    options: {
-      theme: {
-        preset: Aura,
-        options: {
-          darkModeSelector: '.my-app-dark',
-        },
-      },
-    },
+    importTheme: { from: '@/configs/primevue/theme.ts' },
   },
 
   postcss: {
     plugins: {
       'postcss-nested': {},
       'postcss-custom-media': {},
+      '@tailwindcss/postcss7-compat': {},
+      autoprefixer: {},
     },
   },
 

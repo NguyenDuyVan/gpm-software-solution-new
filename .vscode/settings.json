@@ -1,4 +1,12 @@
 {
   // Required in vscode-eslint < v3.0.10 only
-  "eslint.useFlatConfig": true
+  "eslint.useFlatConfig": true,
+
+  // CSS validation
+  "css.validate": true,
+  "scss.validate": true,
+
+  // Tell VSCode's built-in CSS/SCSS linters to recognize Tailwind at-rules
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore"
 }

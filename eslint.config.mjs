@@ -12,6 +12,7 @@ export default withNuxt()
       'no-unused-vars': 'warn',
       'prettier/prettier': 'warn',
       '@typescript-eslint/no-explicit-any': 'off',
+      'vue/no-v-html': 'off',
     },
     plugins: { prettier: prettier },
   });

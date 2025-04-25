@@ -1,19 +1,60 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
 @import 'primeicons/primeicons.css';
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* --p-primary-color: var(--p-blue-500);
+  --p-primary-color-hover: var(--p-blue-600);
+  --p-primary-color-active: var(--p-blue-700);
+
+  --p-primary-color-text: var(--p-content-color);
+  --p-primary-color-text-hover: var(--p-content-color-hover); */
+
+  --p-breadcrumb-background: unset;
+  --p-breadcrumb-item-color: var(--p-text-color);
+}
 
 html {
   margin: 0 auto;
   scroll-behavior: smooth;
+  color: var(--color-gray-800);
 }
 
 body {
   font-family: 'Inter', sans-serif;
-
-  font-size: 14px;
+  font-size: 16px;
 }
 
-:root {
-  --p-breadcrumb-background: unset;
-  --p-breadcrumb-item-color: var(--p-text-color);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold;
+}
+
+h1 {
+  @apply text-4xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-2xl;
+}
+
+h4 {
+  @apply text-xl;
+}
+
+h5 {
+  @apply text-lg;
+}
+
+h6 {
+  @apply text-base;
 }

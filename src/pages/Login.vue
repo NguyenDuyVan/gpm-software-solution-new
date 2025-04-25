@@ -73,10 +73,6 @@
   </div>
 </template>
 <script setup lang="ts">
-  import {
-    useAuthMutation,
-    type LoginPayloadType,
-  } from '~/src/services/composables/api/mutation/useAuthMutation';
   import { zodResolver } from '@primevue/forms/resolvers/zod';
   import { z } from 'zod';
   import type { FormSubmitEvent } from '@primevue/forms/form';
@@ -92,21 +88,19 @@
     ],
   });
 
-  const initialValues = ref<LoginPayloadType>({
+  const initialValues = ref<any>({
     email: '',
     password: '',
   });
 
-  const { mutate: login, status } = useAuthMutation();
-  const isLoading = computed(() => status.value === 'pending');
+  const isLoading = computed(() => false);
 
   const handleLogin = (event: FormSubmitEvent<Record<string, string>>) => {
     if (!event.valid || !event.values.email || !event.values.password) return;
 
-    login({
-      email: event.values.email,
-      password: event.values.password,
-    });
+    const { email, password } = event.values;
+    // Perform login logic here
+    console.log('Logging in with:', { email, password });
   };
 
   const resolver = ref(

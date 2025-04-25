@@ -29,15 +29,6 @@ export const formatDateTimeString = (dateString: string): string => {
   );
 };
 
-export const formatPrice = (price: number): string => {
-  const formatter = new Intl.NumberFormat('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
-  });
-
-  return formatter.format(price);
-};
-
 export const getCurrentDateString = (): string => {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -76,4 +67,13 @@ const getLastdayOfCurrentMonth = (): number => {
 };
 export const isValidEmail = (value: string): boolean => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+};
+
+export const formatPrice = (price: number) => {
+  const formatter = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  });
+
+  return formatter.format(price);
 };

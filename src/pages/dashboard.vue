@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="space-y-4">
     <div class="center-box--without-bg">
-      <h5>{{ $t('dashboard_page.title') }}</h5>
+      <h3>{{ $t('dashboard_page.title') }}</h3>
     </div>
 
     <div class="center-box--without-bg">
@@ -106,9 +106,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { getDashboardData } from '~/services/customerService';
+  definePageMeta({
+    // middleware: ['admin'],
+  });
 
   const { t } = useI18n();
+  const { getDashboardData } = useCustomerService();
 
   interface User {
     licenses_count: number;

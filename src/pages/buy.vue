@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div v-if="step === 1" class="center-box--without-bg">
-      <h3>{{ $t('buy_page.title') }}</h3>
-    </div>
     <div v-if="step === 2">
       <Button
         icon="pi pi-arrow-left"
@@ -15,30 +12,45 @@
     <Form ref="form" @submit.prevent="submitAsync">
       <div>
         <!-- Step 1-->
-        <div v-if="step === 1" class="row">
-          <div class="col-md-8">
-            <div class="center-box blue-top-border">
-              <h6 style="color: #0080c0">{{ $t('buy_page.software_info.title') }}</h6>
-              <br />
-              <div class="row">
-                <div class="col-md-6">
+        <div v-if="step === 1" class="space-y-4">
+          <Card class="bg-white dark:bg-gray-800 shadow rounded-xl">
+            <template #title>
+              <h4 style="color: #0080c0">{{ $t('buy_page.software_info.title') }}</h4>
+            </template>
+            <template #content>
+              <div class="space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div class="form-group">
                     <label for="project" class="block mb-2">
                       {{ $t('buy_page.software_info.software_name.label')
-                      }}<span class="cl-red">*</span>
+                      }}<span class="text-red-600">*</span>
                     </label>
-                    <SelectBox
-                      id="project"
-                      ref="selectProject"
-                      v-model="orderObj.project_id"
-                      :place-holder="softWarePlaceholder"
+
+                    <Select
+                      v-model="selectedSoftware"
+                      :options="softwareList"
+                      option-label="name"
+                      filter
+                      :placeholder="t('buy_page.software_info.software_name.placeholder')"
+                      class="w-full"
                       @onchange="projectChangedEvent"
                     >
-                    </SelectBox>
+                      <template #value="slotProps">
+                        <div class="flex items-center">
+                          <div v-if="slotProps.value" class="flex items-center">
+                            <div>{{ slotProps.value.name }}</div>
+                          </div>
+                          <span v-else>
+                            {{ slotProps.placeholder }}
+                          </span>
+                        </div>
+                      </template>
+                      <template #option="slotProps">
+                        <div>{{ slotProps.option.name }}</div>
+                      </template>
+                    </Select>
                   </div>
-                </div>
 
-                <div class="col-md-6">
                   <div class="form-group">
                     <label for="modules" class="block mb-2">{{
                       $t('buy_page.software_info.package')
@@ -60,11 +72,11 @@
                     <div class="form-group">
                       <label for="modules" class="block mb-2">Modules</label>
 
-                      <div class="modules-container">
+                      <div class="flex flex-wrap bg-gray-100 dark:bg-gray-700 p-4 rounded-md">
                         <div
                           v-for="item in uiData.projectModules"
                           :key="item.name"
-                          class="modules-container__item"
+                          class="flex items-center"
                         >
                           <Checkbox
                             :inputId="'module-' + item.name"
@@ -78,18 +90,12 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- Address -->
-            <div class="center-box blue-top-border">
-              <div class="address">
-                <h6 style="color: #0080c0">{{ $t('buy_page.customer_info.title') }}</h6>
-                <br />
-                <p style="color: gray">{{ $t('buy_page.customer_info.title') }}</p>
+                <!-- Client info -->
+                <div class="address">
+                  <h4 style="color: #0080c0">{{ $t('buy_page.customer_info.title') }}</h4>
 
-                <div class="row">
-                  <div class="col-md-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="form-group">
                       <label for="displayName" class="block mb-2">
                         {{ $t('buy_page.customer_info.user_name') }}<span class="cl-red">*</span>
@@ -102,8 +108,6 @@
                         required
                       />
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="form-group">
                       <label for="phoneNum" class="block mb-2">{{
                         $t('buy_page.customer_info.phone')
@@ -111,151 +115,159 @@
                       <InputText id="phoneNum" v-model="customerObj.phone_number" class="w-full" />
                     </div>
                   </div>
-                </div>
 
-                <div v-show="!isGlobal" class="field-checkbox mt-3 mb-3">
-                  <Checkbox id="notInVietNam" v-model="notInVietNam" :binary="true" />
-                  <label for="notInVietNam" class="ml-2">{{
-                    $t('buy_page.customer_info.not_in_vi')
-                  }}</label>
-                </div>
+                  <div v-show="!isGlobal" class="field-checkbox mt-3 mb-3">
+                    <Checkbox id="notInVietNam" v-model="notInVietNam" :binary="true" />
+                    <label for="notInVietNam" class="ml-2">{{
+                      $t('buy_page.customer_info.not_in_vi')
+                    }}</label>
+                  </div>
 
-                <div class="row">
-                  <div v-if="!notInVietNam" class="col-md-4">
-                    <div class="form-group">
-                      <label for="province" class="block mb-2">
-                        {{ $t('buy_page.customer_info.province.label')
-                        }}<span class="cl-red">*</span>
-                      </label>
-                      <Dropdown
-                        v-model="customerObj.province"
-                        filter
-                        :options="provinceListMap"
-                        option-label="name"
-                        option-value="value"
-                        :placeholder="$t('buy_page.customer_info.province.placeholder')"
-                        class="w-full"
-                        @change="provinceChanged"
-                      />
+                  <div class="row">
+                    <div v-if="!notInVietNam" class="col-md-4">
+                      <div class="form-group">
+                        <label for="province" class="block mb-2">
+                          {{ $t('buy_page.customer_info.province.label')
+                          }}<span class="cl-red">*</span>
+                        </label>
+                        <Dropdown
+                          v-model="customerObj.province"
+                          filter
+                          :options="provinceListMap"
+                          option-label="name"
+                          option-value="value"
+                          :placeholder="$t('buy_page.customer_info.province.placeholder')"
+                          class="w-full"
+                          @change="provinceChanged"
+                        />
+                      </div>
+                    </div>
+                    <div v-if="!notInVietNam" class="col-md-4">
+                      <div class="form-group">
+                        <label for="district" class="block mb-2">
+                          {{ $t('buy_page.customer_info.district.label')
+                          }}<span class="cl-red">*</span>
+                        </label>
+                        <Dropdown
+                          v-model="customerObj.district"
+                          filter
+                          :options="districtListMap"
+                          option-label="name"
+                          option-value="value"
+                          :placeholder="$t('buy_page.customer_info.district.placeholder')"
+                          class="w-full"
+                          @change="districtChanged"
+                        />
+                      </div>
+                    </div>
+                    <div v-if="!notInVietNam" class="col-md-4">
+                      <div class="form-group">
+                        <label for="ward" class="block mb-2">
+                          {{ $t('buy_page.customer_info.ward.label') }}<span class="cl-red">*</span>
+                        </label>
+                        <Dropdown
+                          v-model="customerObj.ward"
+                          filter
+                          :options="wardListMap"
+                          option-label="name"
+                          option-value="value"
+                          :placeholder="$t('buy_page.customer_info.ward.placeholder')"
+                          class="w-full"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div v-if="!notInVietNam" class="col-md-4">
-                    <div class="form-group">
-                      <label for="district" class="block mb-2">
-                        {{ $t('buy_page.customer_info.district.label')
-                        }}<span class="cl-red">*</span>
-                      </label>
-                      <Dropdown
-                        v-model="customerObj.district"
-                        filter
-                        :options="districtListMap"
-                        option-label="name"
-                        option-value="value"
-                        :placeholder="$t('buy_page.customer_info.district.placeholder')"
-                        class="w-full"
-                        @change="districtChanged"
-                      />
-                    </div>
+
+                  <div class="form-group">
+                    <label for="address" class="block mb-2">
+                      {{ $t('buy_page.customer_info.address') }} <span class="cl-red">*</span>
+                    </label>
+                    <InputText
+                      id="address"
+                      v-model="customerObj.addressText"
+                      class="w-full"
+                      required
+                    />
                   </div>
-                  <div v-if="!notInVietNam" class="col-md-4">
-                    <div class="form-group">
-                      <label for="ward" class="block mb-2">
-                        {{ $t('buy_page.customer_info.ward.label') }}<span class="cl-red">*</span>
-                      </label>
-                      <Dropdown
-                        v-model="customerObj.ward"
-                        filter
-                        :options="wardListMap"
-                        option-label="name"
-                        option-value="value"
-                        :placeholder="$t('buy_page.customer_info.ward.placeholder')"
-                        class="w-full"
-                      />
-                    </div>
+                  <div class="form-group">
+                    <label for="tax" class="block mb-2">{{ $t('buy_page.tax.tax_code') }}</label>
+                    <small
+                      style="margin-bottom: 10px; display: block"
+                      v-html="$t('buy_page.tax.content')"
+                    ></small>
+                    <InputText id="tax" v-model="customerObj.tax_code" class="w-full" />
                   </div>
                 </div>
+              </div>
+            </template>
+          </Card>
 
+          <Card class="bg-white dark:bg-gray-800 shadow rounded-xl">
+            <template #title> </template>
+            <template #content> </template>
+          </Card>
+
+          <Card class="bg-white dark:bg-gray-800 shadow rounded-xl">
+            <template #title>
+              <h4 style="color: #0080c0">{{ $t('buy_page.software_info.payment_method') }}</h4>
+            </template>
+            <template #content>
+              <div class="center-box blue-top-border">
                 <div class="form-group">
-                  <label for="address" class="block mb-2">
-                    {{ $t('buy_page.customer_info.address') }} <span class="cl-red">*</span>
+                  <label for="paymentMethod" class="block mb-2">
+                    {{ $t('buy_page.software_info.select_payment_method')
+                    }}<span class="cl-red">*</span>
+                  </label>
+                  <Dropdown
+                    id="paymentMethod"
+                    v-model="paymentMethod"
+                    :options="paymentMethods"
+                    option-label="name"
+                    option-value="value"
+                    :placeholder="$t('buy_page.software_info.payment_method')"
+                    class="w-full"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="affiliate_code" class="block mb-2">
+                    {{ $t('buy_page.software_info.aff_code') }}
+                    <ProgressSpinner
+                      v-show="onLoadingAffInfo"
+                      style="width: 20px; height: 20px; margin-left: 5px; vertical-align: middle"
+                      strokeWidth="4"
+                      fill="var(--surface-ground)"
+                      animationDuration=".5s"
+                    />
                   </label>
                   <InputText
-                    id="address"
-                    v-model="customerObj.addressText"
+                    id="affiliate_code"
+                    v-model="orderObj.affiliate_code"
                     class="w-full"
-                    required
+                    @input="affCodeChangedEvent"
                   />
-                </div>
-                <div class="form-group">
-                  <label for="tax" class="block mb-2">{{ $t('buy_page.tax.tax_code') }}</label>
-                  <small
-                    style="margin-bottom: 10px; display: block"
-                    v-html="$t('buy_page.tax.content')"
-                  ></small>
-                  <InputText id="tax" v-model="customerObj.tax_code" class="w-full" />
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-4">
-            <div class="center-box blue-top-border">
-              <h6 style="color: #0080c0">{{ $t('buy_page.software_info.payment_method') }}</h6>
-              <br />
-              <div class="form-group">
-                <label for="paymentMethod" class="block mb-2">
-                  {{ $t('buy_page.software_info.select_payment_method')
-                  }}<span class="cl-red">*</span>
-                </label>
-                <Dropdown
-                  id="paymentMethod"
-                  v-model="paymentMethod"
-                  :options="paymentMethods"
-                  option-label="name"
-                  option-value="value"
-                  :placeholder="$t('buy_page.software_info.payment_method')"
-                  class="w-full"
+                  <div v-if="affMessage != ''">
+                    <Message severity="info" class="mt-3">{{ affMessage }}</Message>
+                  </div>
+                </div>
+                <br />
+                <h6 style="color: #111111">
+                  {{ $t('buy_page.software_info.total') }}:
+                  {{ formatVnPrice(orderObj.actual_price) }}
+                </h6>
+                <br />
+              </div>
+              <div class="center-box--without-bg saving-wrapper">
+                <Button
+                  label="$t('buy_page.term.next')"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  class="p-button-success"
+                  @click="nextStep()"
                 />
               </div>
-              <div class="form-group">
-                <label for="affiliate_code" class="block mb-2">
-                  {{ $t('buy_page.software_info.aff_code') }}
-                  <ProgressSpinner
-                    v-show="onLoadingAffInfo"
-                    style="width: 20px; height: 20px; margin-left: 5px; vertical-align: middle"
-                    strokeWidth="4"
-                    fill="var(--surface-ground)"
-                    animationDuration=".5s"
-                  />
-                </label>
-                <InputText
-                  id="affiliate_code"
-                  v-model="orderObj.affiliate_code"
-                  class="w-full"
-                  @input="affCodeChangedEvent"
-                />
-
-                <div v-if="affMessage != ''">
-                  <Message severity="info" class="mt-3">{{ affMessage }}</Message>
-                </div>
-              </div>
-              <br />
-              <h6 style="color: #111111">
-                {{ $t('buy_page.software_info.total') }}:
-                {{ formatVnPrice(orderObj.actual_price) }}
-              </h6>
-              <br />
-            </div>
-            <div class="center-box--without-bg saving-wrapper">
-              <Button
-                label="$t('buy_page.term.next')"
-                icon="pi pi-arrow-right"
-                iconPos="right"
-                class="p-button-success"
-                @click="nextStep()"
-              />
-            </div>
-          </div>
+            </template>
+          </Card>
         </div>
       </div>
 
@@ -318,7 +330,8 @@
 
   // References
   const form = ref<HTMLFormElement | null>(null);
-  const selectProject = ref<any>(null);
+  const selectedSoftware = ref<any>(null);
+  const softwareList = ref<any[]>([]);
   const displayNameInput = ref<HTMLInputElement | null>(null);
 
   // Reactive state
@@ -370,10 +383,6 @@
   // Computed properties
   const projectModuleSelected = computed<boolean[]>(() => {
     return uiData.projectModules.map(item => item.selected);
-  });
-
-  const softWarePlaceholder = computed<string>(() => {
-    return t('buy_page.software_info.software_name.placeholder');
   });
 
   const provinceListMap = computed(() => {
@@ -629,8 +638,8 @@
         }
       }
 
-      selectProject.value.updateSuggestList(result.data, 'name', 'id');
-      selectProject.value.setSelectedId(autoSelectId);
+      softwareList.value = result.data;
+      selectedSoftware.value = autoSelectId;
 
       if (storedF) localStorage.removeItem('f');
     }

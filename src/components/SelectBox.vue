@@ -1,18 +1,10 @@
 <template>
   <div class="p-selectbox-container">
-    <div class="p-selectbox-header" @click="isOpen = !isOpen">
-      <span class="p-selectbox-label">{{ selectedText }}</span>
-      <Button
-        icon="pi pi-chevron-down"
-        class="p-button-text p-button-sm"
-        aria-label="Toggle Dropdown"
-      />
-    </div>
+    <div class="p-selectbox-header" @click="isOpen = !isOpen"></div>
 
     <Panel v-show="isOpen" class="p-selectbox-panel">
       <div class="p-sticky-search">
         <span class="p-input-icon-left w-full">
-          <i class="pi pi-search" />
           <InputText
             v-model="search"
             class="w-full"
@@ -36,12 +28,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-  import { ref, reactive, onMounted, onUnmounted, watch } from 'vue';
-  import Button from 'primevue/button';
-  import InputText from 'primevue/inputtext';
-  import Panel from 'primevue/panel';
-
+<script setup lang="ts" scoped>
   interface SourceItem {
     [key: string]: any;
     id?: number | string;
@@ -172,7 +159,6 @@
     border: 1px solid var(--surface-border, #ced4da);
     border-radius: 6px;
     background: var(--surface-card, white);
-    padding: 0.5rem;
     cursor: pointer;
     height: 100%;
   }
@@ -223,5 +209,9 @@
 
   .w-full {
     width: 100%;
+  }
+
+  .p-panel-header {
+    padding: 0 !important;
   }
 </style>

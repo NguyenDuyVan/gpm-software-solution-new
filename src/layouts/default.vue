@@ -28,11 +28,9 @@
           </template>
         </Breadcrumb>
 
-        <Card>
-          <template #content>
-            <slot />
-          </template>
-        </Card>
+        <div>
+          <slot />
+        </div>
       </div>
     </div>
   </div>

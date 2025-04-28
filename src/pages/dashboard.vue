@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-4">
-    <div class="center-box--without-bg">
+    <div class="center-box--without-bg dark:text-primary">
       <h3>{{ $t('dashboard_page.title') }}</h3>
     </div>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-secondary w-64 flex flex-col shadow-lg gap-5">
+  <div class="bg-white dark:bg-gray-800 w-64 flex flex-col shadow-lg gap-5">
     <div class="p-4 shadow">
       <img data-v-174a6438="" src="@/assets/imgs/logo.png" alt="" class="logo logo-notcollapsed" />
     </div>
@@ -8,7 +8,7 @@
         <li v-for="item in MENU_CONFIG" :key="item.path">
           <NuxtLink
             :to="item.path"
-            class="flex items-center p-3 rounded-lg transition-colors hover:bg-primary hover:text-white"
+            class="flex text-gray-800 dark:text-white items-center p-3 rounded-lg transition-colors hover:bg-primary hover:text-white"
             :class="{
               'bg-primary text-white': $route.path.startsWith(item.path),
             }"

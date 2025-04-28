@@ -9,7 +9,7 @@
       <Header />
 
       <!-- Page Content -->
-      <div class="flex-1 space-y-2 overflow-auto bg-gray-100 dark:bg-gray-800 px-6 py-2">
+      <div class="flex-1 space-y-2 overflow-auto bg-gray-100 dark:bg-gray-900 px-6 py-2">
         <Breadcrumb :home="home" :model="items" class="bg-unset">
           <template #item="{ item, props }">
             <router-link
@@ -28,7 +28,7 @@
           </template>
         </Breadcrumb>
 
-        <div class="bg-white shadow-md rounded-xl p-4">
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-xl p-4">
           <slot />
         </div>
       </div>

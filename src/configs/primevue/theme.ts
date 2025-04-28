@@ -18,37 +18,35 @@ const MyPreset = definePreset(Aura, {
     },
     colorScheme: {
       light: {
-        primary: {
-          color: '{blue.500}',
-          inverseColor: '#ffffff',
-          hoverColor: '{blue.400}',
-          activeColor: '{blue.300}',
-        },
-        highlight: {
-          background: '{blue.500}',
-          focusBackground: '{blue.200}',
-          color: '#ffffff',
-          focusColor: '#ffffff',
-        },
-        secondary: {
-          color: '#fff',
+        surface: {
+          0: '#ffffff',
+          50: '{gray.50}',
+          100: '{gray.100}',
+          200: '{gray.200}',
+          300: '{gray.300}',
+          400: '{gray.400}',
+          500: '{gray.500}',
+          600: '{gray.600}',
+          700: '{gray.700}',
+          800: '{gray.800}',
+          900: '{gray.900}',
+          950: '{gray.950}',
         },
       },
       dark: {
-        primary: {
-          color: '{blue.500}',
-          inverseColor: '#ffffff',
-          hoverColor: '{blue.400}',
-          activeColor: '{blue.300}',
-        },
-        highlight: {
-          background: 'rgba(250, 250, 250, .16)',
-          focusBackground: 'rgba(250, 250, 250, .24)',
-          color: 'rgba(255,255,255,.87)',
-          focusColor: 'rgba(255,255,255,.87)',
-        },
-        secondary: {
-          color: '{slate.700}',
+        surface: {
+          0: '#ffffff',
+          50: '{gray.50}',
+          100: '{gray.100}',
+          200: '{gray.200}',
+          300: '{gray.300}',
+          400: '{gray.400}',
+          500: '{gray.500}',
+          600: '{gray.600}',
+          700: '{gray.700}',
+          800: '{gray.800}',
+          900: '{gray.900}',
+          950: '{gray.950}',
         },
       },
     },

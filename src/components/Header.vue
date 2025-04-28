@@ -102,14 +102,4 @@
   });
 </script>
 
-<style lang="scss" scoped>
-  /* Dark mode styles */
-  :deep(.dark-mode-switch.p-inputswitch-checked .p-toggleswitch-slider) {
-    @apply bg-gray-500;
-  }
-
-  /* Light mode styles */
-  :deep(.light-mode-switch .p-toggleswitch-slider) {
-    @apply bg-blue-500;
-  }
-</style>
+<style lang="scss" scoped></style>

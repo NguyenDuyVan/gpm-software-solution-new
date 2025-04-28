@@ -24,8 +24,7 @@ html {
 html.dark {
   color: #fff;
 
-  /* --p-content-background: var(--color-gray-800);
-  --p-datatable-border-color: var(--color-gray-500); */
+  --p-content-background: var(--color-gray-800);
 }
 
 body {

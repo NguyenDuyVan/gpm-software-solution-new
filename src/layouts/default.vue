@@ -28,9 +28,11 @@
           </template>
         </Breadcrumb>
 
-        <div class="bg-white dark:bg-gray-800 shadow-md rounded-xl p-4">
-          <slot />
-        </div>
+        <Card>
+          <template #content>
+            <slot />
+          </template>
+        </Card>
       </div>
     </div>
   </div>

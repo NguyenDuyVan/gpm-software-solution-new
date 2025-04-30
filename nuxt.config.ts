@@ -76,6 +76,9 @@ export default defineNuxtConfig({
     bundle: {
       optimizeTranslationDirective: false,
     },
+    compilation: {
+      strictMessage: false,
+    },
     detectBrowserLanguage: {
       useCookie: true,
       cookieCrossOrigin: true,
@@ -85,7 +88,6 @@ export default defineNuxtConfig({
       redirectOn: 'root',
       fallbackLocale: 'vi',
     },
-    vueI18n: 'i18n.config.ts',
   },
 
   primevue: {

@@ -1,16 +1,13 @@
 <template>
-  <div class="bg-white dark:bg-gray-800 w-64 flex flex-col shadow-lg gap-5">
-    <div class="p-4 shadow">
-      <img data-v-174a6438="" src="@/assets/imgs/logo.png" alt="" class="logo logo-notcollapsed" />
-    </div>
+  <div class="bg-white dark:bg-gray-800 w-64 flex flex-col gap-5 py-6">
     <nav class="flex-1">
       <ul class="space-y-2 px-3">
         <li v-for="item in MENU_CONFIG" :key="item.path">
           <NuxtLink
             :to="item.path"
-            class="flex text-gray-800 dark:text-white items-center p-3 rounded-lg transition-colors hover:bg-primary hover:text-white"
+            class="flex text-gray-800 dark:text-white items-center p-3 rounded-lg transition-colors hover:bg-primary-200 hover:text-white"
             :class="{
-              'bg-primary text-white': $route.path.startsWith(item.path),
+              '!bg-primary text-white': $route.path.startsWith(item.path),
             }"
           >
             <i :class="[item.icon, 'mr-3']" />

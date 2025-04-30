@@ -4,7 +4,8 @@
     "buy": "Mua license",
     "license": "Quản lý license",
     "affiliate": "Affiliate",
-    "support": "Hỗ trợ"
+    "support": "Hỗ trợ",
+    "term_policies": "Chính sách & điều khoản"
   },
   "common": {
     "no_data": "Không có dữ liệu để hiển thị",
@@ -19,6 +20,8 @@
   },
   "license": {
     "title": "License của tôi",
+    "warring": "Đa phần các phần mềm chúng tôi đều patch để bảo vệ code và hạn chế crack. Trong một số trường hợp, phần mềm có thể bị Antivirus nhận diện nhầm là virus và bị xóa file thực thi, vì vậy, để đảm bảo phần mềm hoạt động ổn định, hãy <a style='color:#0d6efd' target=\"_blank\" href=\"https://giaiphapmmo.vn/cach-tao-thu-muc-ngoai-le-trong-windows-defender/\"><b>Thêm ngoại lệ thư mục phần mềm vào Antivirus</b></a> (Nếu sử dụng Antivirus khác Windows Defender, hãy tìm kiếm trên google để xem hướng dẫn)",
+    "instruction": " Nhấn vào biểu tượng <i class=\"fas fa-arrow-up btn-buy-module\"></i> nếu bạn muốn kích hoạt thêm module hoặc thiết bị cho License.<br>Mật khẩu giải nén / cài đặt của tất cả phần mềm là : <b>giaiphapmmo.vn</b> hoặc <b>giaiphapmmo.net</b>",
     "data_table1": {
       "license": "License",
       "software": "Phần mềm",
@@ -82,14 +85,14 @@
   "buy_page": {
     "title": "Mua license",
     "software_info": {
-      "title": "Thông tin phần mềm",
+      "title": "Nhập thông tin",
       "software_name": {
         "label": "Phần mềm",
         "placeholder": "-- Chọn phần mềm"
       },
       "package": "Gói phần mềm",
       "aff_code": "Mã giới thiệu nếu có",
-      "total": "Tổng",
+      "total_money": "Tổng tiền",
       "select_payment_method": "Chọn phương thức thanh toán",
       "payment_method": "Phương thức thanh toán",
       "bank": "Chuyển khoản ngân hàng"
@@ -99,7 +102,7 @@
       "desc": "Vui lòng nhập đầy đủ thông tin cá nhân để chúng tôi có thể hỗ trợ và bảo hành một cách tốt nhất. Thông tin của bạn cũng sẽ được lưu cho các lần thanh toán sau, vì vậy bạn chỉ cần nhập một lần đầu tiên.",
       "user_name": "Họ và tên",
       "phone": "Số điện thoại",
-      "not_in_vi": "Tôi không ở Việt Nam",
+      "live_in_vi": "Tôi ở Việt Nam",
       "province": {
         "label": "Tỉnh / Thành phố",
         "placeholder": "-- Chọn tỉnh thành"
@@ -115,11 +118,14 @@
       "address": "Địa chỉ"
     },
     "tax": {
-      "tax_code": "Mã số thuế"
+      "tax_code": "Mã số thuế",
+      "content": "(Ghi chú: Trong trường hợp cần xuất hóa đơn, vui lòng thực hiện giao dịch qua <a href='https://facebook.com/giaiphapmmodotnet' style='color:#0d6efd'>Fanpage</a> để được tư vấn hỗ trợ xuất hóa đơn nháp hoặc phát hình chính thức)"
     },
     "term": {
       "title": "Điều khoản mua phần mềm",
-      "agree_rule": "Tôi đã đọc và đồng ý điều khoản trên",
+      "content": "<b>Bảo hành đối với các phần mềm chạy phụ thuộc hệ thống khác<br>(Crawler, các phần mềm nuôi tài khoản tự động, các phần mềm chạy phụ thuộc api bên thứ ba)</b><p>Các phần mềm sẽ thường xuyên được cập nhật và khách hàng chỉ mất một khoản phí nhỏ (từ 150.000-300.000đ) một khi Platform nguồn thay đổi cấu trúc quá lớn dẫn tới phải làm lại toàn bộ core phần mềm (thông thường chỉ áp dụng với các phần mềm bán không chạy). <b>Trường hợp đặc biệt:</b> một số phần mềm không còn khả năng fix để hoạt động trở lại (thông thường bị phụ thuộc api bên thứ ba), người dùng sẽ được hoàn phí trong vòng 03 tháng đầu tiên.</p><b>Bảo hành đối với các phần mềm chạy độc lập</b><p>Miễn phí fix mọi lỗi phát sinh, các update dựa trên đóng góp của người dùng (đôi khi sẽ có update có phí với những tính năng lớn, tuy nhiên người dùng có thể trả phí để sử dụng hoặc không)</p><b>Refund</b><p>Trong trường hợp phần mềm chạy không đúng như đã tư vấn, hoặc có phát sinh lỗi không mong muốn trên máy bên khách hàng, chúng tôi sẽ hỗ trợ fix tích cực để phần mềm hoạt động bình thường (trong 1-2 ngày tùy mức độ cần chỉnh sửa), nếu không được sẽ hoàn trả toàn bộ. <b>Bạn chỉ có thể yêu cầu refund trong vòng 3 ngày kể từ ngày mua.</b></p><b>Hỗ trợ</b><p>Một license chúng tôi chỉ hỗ trợ một người duy nhất và cũng là chủ sở hữu license.<br><b>Lưu ý:</b> <span style='color: #e84b00;'>Chúng tôi không hỗ trợ đối với trường hợp mua bán lại license / tài khoản bởi license là vĩnh viễn và đã có chi phí hỗ trợ hướng dẫn sử dụng một lần</span>. Hiểu đơn giản: <i>bạn không thể sử dụng license vài năm sau đó bán cho người khác và được chúng tôi support như một khách hàng mới</i>.</p>",
+      "content2": "<br/><b>Bảo mật</b><p>Đa phần các phần mềm trong hệ sinh thái đều chạy trên .NET Framework / ngôn ngữ C# nên rất dễ bị crack. Bởi vậy, chúng tôi đã sử dụng patch mã hóa và xóa trộn code để hạn chế điều này. Tuy nhiên việc mã hóa code cũng làm cho các trình Antivirus nhận diện nhầm và xóa app trong quá trình sử dụng, bạn cần <b>Thêm ngoại lệ vào antivirus</b> để sử dụng app được ổn định nhất. <span style='color: #e84b00;'>Công ty GPM Software Solutions cam kết mã nguồn không chứa mã độc, botnet và chịu trách nhiệm trước pháp luật!</span></p>",
+      "agree_rule": "Tôi xác nhận các thông tin trên đã chính xác và đồng ý với các <a href=\"/term-policies\" target=\"_blank\" class=\"underline italic decoration-solid text-blue-600\">điều khoản & chính sách</a>",
       "payment": "Thanh toán",
       "next": "Tiếp tục",
       "back": "Quay lại"
@@ -134,6 +140,7 @@
       "verified": "Đã xác minh",
       "unverified": "Chưa xác minh"
     },
+    "desc": "Để tham gia chương trình affiliate, vui lòng liên hệ với chúng tôi thông qua <a style='color:#0d6efd' href='https://facebook.com/giaiphapmmodotnet' target='blank'>FanPage</a>. Sau đó mã affiliate của bạn mới có thể được sử dụng!",
     "aff_code": "Mã giới thiệu",
     "withdraw": "Rút tiền",
     "withdraw_history": "Lịch sử rút tiền",
@@ -154,6 +161,8 @@
     "btn_withdraw": "Đặt lệnh rút tiền",
     "account_withdraw": "Tài khoản nhận tiền:",
     "bank_info": "Chưa có thông tin về tài khoản của bạn",
+    "infor_first": " Lệnh rút tiền sẽ được xử lý trong vòng <b>3-5 ngày làm việc</b> kể từ ngày đặt lệnh rút. Hãy đảm bảo bạn đã điền thông tin ngân hàng chính xác tại mục thông tin tài khoản, chúng tôi sẽ không chịu bất cứ trách nhiệm nào nếu thông tin của bạn không đúng!",
+    "info_second": "Sau khi đặt lệnh rút tiền thành công, vui lòng nhắn tin lên <a style='color:#0d6efd' href='https://facebook.com/giaiphapmmodotnet' target='_blank'>Fan page</a> xác nhận lần đầu để tránh các trường hợp đáng tiếc. Ví dụ như tài khoản của bạn bị hack và thay đổi thông tin chuyển khoản. Các thông tin như họ tên cần đúng với tên tài khoản ngân hàng của bạn.",
     "table": {
       "time": "Thời gian đặt lệnh",
       "withdraw_point": "Số affiliate point",
@@ -192,11 +201,13 @@
   },
   "transfer_page": {
     "title": "Thông tin đơn hàng",
+    "warring_first": " Vui lòng chụp lại bill cũng như kiểm tra lại đúng <b>số tiền</b> và <b>nội dung chuyển khoản</b> trước khi tiến hành thanh toán",
     "warring_secound": "Thay đổi tài khoản nhận tiền từ ngày 10-06-2024",
     "software_name": "Tên phần mềm:",
     "price": "Giá tiền",
     "transfer_content": "Nội dung chuyển khoản:",
     "bank_account_number": "Tài khoản người nhận:",
+    "note": "Đơn hàng sẽ tự động được xử lý sau 1-3 phút, sau đó khi hệ thống xác nhận, hệ thống sẽ tự động chuyển hướng tới <b>License của tôi</b>. Một email cũng sẽ được gửi tới bạn với thông tin chi tiết về đơn hàng",
     "document_title": "Thông tin đơn hàng - User site"
   },
   "affiliate_detail_page": {
@@ -224,7 +235,7 @@
       "password": "Mật khẩu mới",
       "repassword": "Mật lại mật khẩu mới",
       "phone_number": "Số điện thoại",
-      "not_in_vi": "Tôi không ở Việt Nam",
+      "live_in_vi": "Tôi ở Việt Nam",
       "province": {
         "label": "Tỉnh / Thành phố",
         "placeholder": "-- Chọn tỉnh thành"

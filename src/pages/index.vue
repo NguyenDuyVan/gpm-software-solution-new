@@ -1,7 +1,8 @@
 <template>
-  <div>home</div>
+  <div></div>
 </template>
-<script>
-  export default {};
+
+<script setup lang="ts">
+  const router = useRouter();
+  router.push('/dashboard');
 </script>
-<style lang=""></style>

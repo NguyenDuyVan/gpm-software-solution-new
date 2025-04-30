@@ -23,7 +23,6 @@ html {
 
 html.dark {
   color: #fff;
-
   --p-content-background: var(--color-gray-800);
 }
 

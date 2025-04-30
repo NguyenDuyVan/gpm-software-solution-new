@@ -35,3 +35,5 @@ export type Product = {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+export type Locale = 'vi' | 'en';

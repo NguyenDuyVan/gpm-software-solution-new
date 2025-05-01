@@ -23,7 +23,7 @@ export type Project = {
 
 export type OrderObject = {
   modify_license_mode: string;
-  project_id: string | number;
+  project_id: string | number | null;
   project_module_names: string[];
   project_package_id: string | number | null;
   actual_price: number;

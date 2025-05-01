@@ -9,8 +9,8 @@ export default defineI18nConfig(() => {
     fallbackLocale: 'vi',
     locale: 'vi',
     messages: {
-      en,
       vi,
+      en,
     },
     warnHtmlMessage: false,
     compilation: {

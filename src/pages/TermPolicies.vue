@@ -13,4 +13,10 @@
     </template>
   </Card>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  definePageMeta({
+    layout: 'admin',
+    middleware: undefined,
+    path: '/term-policies',
+  });
+</script>

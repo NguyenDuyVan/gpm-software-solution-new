@@ -10,8 +10,16 @@
         </CustomTransition>
 
         <!-- Page Content -->
-        <div class="flex-1 space-y-2 overflow-auto bg-gray-100 dark:bg-gray-900 px-6 py-2">
-          <Breadcrumb :home="home" :model="items" class="bg-unset" pt:root="py-1 px-4">
+        <div
+          class="flex-1 space-y-2 overflow-auto bg-gray-100 dark:bg-gray-900 px-6 py-2 flex flex-col"
+        >
+          <Breadcrumb
+            v-if="items.length > 0"
+            :home="home"
+            :model="items"
+            class="bg-unset"
+            pt:root="py-1 px-4"
+          >
             <template #item="{ item, props }">
               <NuxtLink
                 v-slot="{ href, navigate }"
@@ -29,7 +37,7 @@
             </template>
           </Breadcrumb>
 
-          <div>
+          <div class="flex-1">
             <slot />
           </div>
         </div>
@@ -45,10 +53,11 @@
     icon: 'pi pi-home',
     route: '/',
   });
-  const items = ref<{ label: string; route: string }[]>([
-    { label: 'Dashboard', route: '/dashboard' },
-    { label: 'Buy Licence', route: '/buy' },
-  ]);
+  const items = computed<{ label: string; route: string }[]>(() => {
+    if (route.path === '/dashboard') return [{ label: 'Dashboard', route: '/dashboard' }];
+    else if (route.path === '/buy') return [{ label: 'Buy Licence', route: '/buy' }];
+    return [];
+  });
 
   const showSidebar = ref(true);
   const toggleSidebar = () => {

@@ -4,9 +4,10 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <Toast position="top-center" />
+    <Toast position="top-center" class="z-999" />
   </div>
 </template>
+
 <style>
   .page-enter-active,
   .page-leave-active {

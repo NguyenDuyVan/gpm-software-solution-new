@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-4 bg-white dark:bg-gray-800 shadow-md rounded-xl p-4">
+  <div v-if="!isLoading" class="space-y-4 bg-white dark:bg-gray-800 shadow-md rounded-xl p-4">
     <div class="center-box--without-bg dark:text-primary">
       <h3>{{ $t('dashboard_page.title') }}</h3>
     </div>
@@ -103,6 +103,7 @@
       </div>
     </div>
   </div>
+  <Loading v-else />
 </template>
 
 <script lang="ts" setup>
@@ -131,12 +132,15 @@
     user: {} as User,
     aff_data: [],
   });
+  const isLoading = ref(false);
 
   onMounted(async () => {
+    isLoading.value = true;
     const result = await getDashboardData(1);
     if (result.success === true) {
       dashboardObj.value = result.data;
     }
+    isLoading.value = false;
   });
 
   onUpdated(() => {

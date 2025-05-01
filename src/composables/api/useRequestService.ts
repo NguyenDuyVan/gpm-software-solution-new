@@ -6,6 +6,7 @@ import { TOKEN_NAME } from './constants';
 export const useRequestService = () => {
   const config = useRuntimeConfig();
   const apiBaseUrl = config.public.apiBaseUrl;
+  const toast = useToast();
 
   // Create an Axios instance
   const axiosInstance = axios.create({
@@ -24,6 +25,16 @@ export const useRequestService = () => {
     }
     return config;
   });
+
+  axiosInstance.interceptors.response.use(
+    response => response,
+    error => {
+      const errorMessage = error?.response?.data?.message || error?.message || 'An error occurred';
+
+      toast.add({ severity: 'error', summary: 'Error', detail: errorMessage, life: 3000 });
+      return Promise.reject(error);
+    }
+  );
 
   const handleUnauthorizedError = () => {
     Cookies.remove(TOKEN_NAME);

@@ -24,8 +24,8 @@
   </ClientOnly>
 </template>
 <script setup lang="ts">
+  import type { Locale } from '@/types';
   import type Popover from 'primevue/popover';
-  import type { Locale } from '~/types';
 
   const { locale, locales, setLocale } = useI18n();
 

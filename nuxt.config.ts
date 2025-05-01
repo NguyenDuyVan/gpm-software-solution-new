@@ -12,7 +12,6 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
   app: {
     // head: {
     //   meta: [

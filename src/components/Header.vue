@@ -6,9 +6,11 @@
           <img src="@/assets/imgs/logo.png" alt="logo" />
         </div>
       </CustomTransition>
-      <Button variant="text" rounded @click="toggleSidebar">
-        <i class="pi pi-bars text-xl" />
-      </Button>
+      <div :class="{ 'mx-4': !showLogo }">
+        <Button variant="text" rounded @click="toggleSidebar">
+          <i class="pi pi-bars text-xl" />
+        </Button>
+      </div>
     </div>
     <div class="px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">

@@ -65,13 +65,13 @@ export default defineNuxtConfig({
     ],
   },
   i18n: {
+    strategy: 'no_prefix',
     restructureDir: './src/i18n',
     locales: [
       { code: 'en', language: 'English', file: 'en.json' },
       { code: 'vi', language: 'Vietnamese', file: 'vi.json' },
     ],
-    defaultLocale: 'vi',
-    lazy: true,
+    defaultLocale: 'en',
     bundle: {
       optimizeTranslationDirective: false,
     },
@@ -83,9 +83,9 @@ export default defineNuxtConfig({
       cookieCrossOrigin: true,
       cookieKey: 'i18n_redirected',
       cookieSecure: false,
-      alwaysRedirect: false,
+      alwaysRedirect: true,
       redirectOn: 'root',
-      fallbackLocale: 'vi',
+      fallbackLocale: 'en',
     },
   },
 

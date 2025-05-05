@@ -1,0 +1,22 @@
+[
+  {
+    "key": "tab",
+    "command": "editor.action.inlineSuggest.commit",
+    "when": "editorTextFocus && inlineSuggestionVisible && !editorHasMultipleSelections && !inSnippetMode && !suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "github.copilot.acceptSuggestion",
+    "when": "editorTextFocus && copilot.suggestionVisible"
+  },
+  {
+    "key": "ctrl+]",
+    "command": "github.copilot.nextSuggestion",
+    "when": "editorTextFocus && copilot.suggestionVisible"
+  },
+  {
+    "key": "ctrl+[",
+    "command": "github.copilot.previousSuggestion",
+    "when": "editorTextFocus && copilot.suggestionVisible"
+  }
+]

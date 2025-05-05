@@ -4,10 +4,22 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <Toast position="top-center" class="z-999" />
+    <ClientOnly>
+      <Toast position="top-center" class="z-999" />
+    </ClientOnly>
   </div>
 </template>
+<script setup lang="ts">
+  const appStore = useAppStore();
 
+  onMounted(() => {
+    appStore.listenResize();
+  });
+
+  onUnmounted(() => {
+    appStore.removeResizeListener();
+  });
+</script>
 <style>
   .page-enter-active,
   .page-leave-active {

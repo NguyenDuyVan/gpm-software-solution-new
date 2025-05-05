@@ -21,7 +21,7 @@
                 }}<span class="text-red-600">*</span>
               </label>
 
-              <Dropdown
+              <Select
                 v-model="orderObj.project_id"
                 :options="softwareData.projects"
                 option-value="id"
@@ -44,7 +44,7 @@
               <label for="modules" class="block mb-2">{{
                 $t('buy_page.software_info.package')
               }}</label>
-              <Dropdown
+              <Select
                 v-model="orderObj.project_package_id"
                 :options="softwareData.projectPackages"
                 option-label="name"
@@ -126,7 +126,7 @@
                     }}<span class="text-red-600">*</span>
                   </label>
 
-                  <Dropdown
+                  <Select
                     v-model="customerObj.province"
                     :options="provinceListMap"
                     option-label="name"
@@ -151,7 +151,7 @@
                     {{ $t('buy_page.customer_info.district.label')
                     }}<span class="text-red-600">*</span>
                   </label>
-                  <Dropdown
+                  <Select
                     v-model="customerObj.district"
                     filter
                     :options="districtListMap"
@@ -175,7 +175,7 @@
                   <label for="ward" class="block mb-2">
                     {{ $t('buy_page.customer_info.ward.label') }}<span class="text-red-600">*</span>
                   </label>
-                  <Dropdown
+                  <Select
                     v-model="customerObj.ward"
                     filter
                     :options="wardListMap"
@@ -225,7 +225,7 @@
                 {{ $t('buy_page.software_info.select_payment_method')
                 }}<span class="text-red-600">*</span>
               </label>
-              <Dropdown
+              <Select
                 id="paymentMethod"
                 v-model="paymentMethod"
                 :options="paymentMethods"
@@ -275,7 +275,7 @@
                   :label="$t('buy_page.term.payment')"
                   icon="pi pi-money-bill"
                   :disabled="!argeeRule"
-                  :loading="isSubmmited"
+                  :loading="isLoadingSubmit"
                   type="submit"
                 ></Button>
               </div>
@@ -362,8 +362,6 @@
     softwareData,
   } = useSoftwareData(orderObj, isGlobalUser);
 
-  const { isSubmmited, submitAsync } = useSubmitForm(softwareData, customerObj, orderObj);
-
   const { loadCustomerData } = useCustomerInfo(customerObj);
 
   // Initialize hooks with shared state
@@ -375,9 +373,23 @@
     provinceChanged,
     districtChanged,
     initializeAddressData,
+    formatFullAddress,
   } = useCustomerAddress(customerObj);
 
-  const { orderErrors, customerErrors } = useValidateForm(orderObj, customerObj, liveInVietnam);
+  const { createOrder } = usePaymentProcess(orderObj);
+  const { orderErrors, customerErrors, isSubmmited, validateForm } = useValidateForm(
+    orderObj,
+    customerObj,
+    liveInVietnam
+  );
+  const { submitAsync, isLoadingSubmit } = useSubmitForm(
+    softwareData,
+    customerObj,
+    createOrder,
+    formatFullAddress,
+    isSubmmited,
+    validateForm
+  );
 
   const { paymentMethods, paymentMethod, argeeRule } = usePaymentProcess(orderObj);
 

@@ -10,7 +10,7 @@ export const MENU_CONFIG = [
     id: 3,
     label: 'menu_items.license',
     icon: 'pi pi-file',
-    path: '/license',
+    path: '/license-management',
   },
   {
     id: 4,

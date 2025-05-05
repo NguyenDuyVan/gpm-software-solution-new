@@ -17,8 +17,8 @@
             v-if="items.length > 0"
             :home="home"
             :model="items"
-            class="bg-unset"
-            pt:root="py-1 px-4"
+            class="bg-unset w-fit shrink-0 rounded-2xl shadow bg-white dark:bg-gray-800"
+            pt:root="py-1.5 px-4"
           >
             <template #item="{ item, props }">
               <NuxtLink
@@ -48,19 +48,46 @@
 </template>
 <script setup lang="ts">
   const route = useRoute();
+  const appStore = useAppStore();
+  const isMobile = computed(() => appStore.isMobile);
 
   const home = ref({
     icon: 'pi pi-home',
     route: '/',
   });
   const items = computed<{ label: string; route: string }[]>(() => {
-    if (route.path === '/dashboard') return [{ label: 'Dashboard', route: '/dashboard' }];
-    else if (route.path === '/buy') return [{ label: 'Buy Licence', route: '/buy' }];
-    return [];
+    switch (route.path) {
+      case '/dashboard':
+        return [{ label: 'Dashboard', route: '/dashboard' }];
+      case '/buy':
+        return [{ label: 'Buy Licence', route: '/buy' }];
+      case '/transfer':
+        return [
+          { label: 'Buy Licence', route: '/buy' },
+          { label: 'Transfer', route: '/transfer' },
+        ];
+      case '/license-management':
+        return [{ label: 'License Management', route: '/license-management' }];
+      case '/affiliate':
+        return [{ label: 'Affiliate', route: '/affiliate' }];
+      case '/affiliate-Withdraw':
+        return [
+          { label: 'Affiliate', route: '/affiliate' },
+          { label: 'Withdraw', route: '/affiliate-Withdraw' },
+        ];
+      case '/support':
+        return [{ label: 'Support', route: '/support' }];
+      default:
+        return [];
+    }
   });
 
   const showSidebar = ref(true);
   const toggleSidebar = () => {
     showSidebar.value = !showSidebar.value;
   };
+
+  watch(isMobile, newVal => {
+    showSidebar.value = !newVal;
+  });
 </script>

@@ -1,27 +1,29 @@
 <template>
-  <ClientOnly>
-    <div class="relative">
-      <div class="rounded-lg cursor-pointer hover:brightness-90" @click="toggleLangPopover">
-        <span class="text-xl">{{ getLocaleLabel(selectedLocale) }}</span>
-      </div>
-      <Popover
-        ref="languagePopoverRef"
-        class="!p-0 popover-language"
-        :dt="{ '--p-popover-content-padding': '0' }"
-        pt:content="p-1"
-      >
-        <div
-          v-for="option in localeOptions"
-          :key="option.code"
-          class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600"
-          @click="selectLang(option.code)"
-        >
-          <span class="text-xl">{{ option.flag }}</span>
-          <span class="ml-2">{{ option.label }}</span>
+  <div>
+    <ClientOnly>
+      <div class="relative">
+        <div class="rounded-lg cursor-pointer hover:brightness-90" @click="toggleLangPopover">
+          <span class="text-xl">{{ getLocaleLabel(selectedLocale) }}</span>
         </div>
-      </Popover>
-    </div>
-  </ClientOnly>
+        <Popover
+          ref="languagePopoverRef"
+          class="!p-0 popover-language"
+          :dt="{ '--p-popover-content-padding': '0' }"
+          pt:content="p-1"
+        >
+          <div
+            v-for="option in localeOptions"
+            :key="option.code"
+            class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600"
+            @click="selectLang(option.code)"
+          >
+            <span class="text-xl">{{ option.flag }}</span>
+            <span class="ml-2">{{ option.label }}</span>
+          </div>
+        </Popover>
+      </div>
+    </ClientOnly>
+  </div>
 </template>
 <script setup lang="ts">
   import type { Locale } from '@/types';
@@ -90,4 +92,11 @@
     }
   });
 </script>
-<style lang=""></style>
+<style lang="scss">
+  .popover-language {
+    &:after,
+    &:before {
+      display: none !important;
+    }
+  }
+</style>

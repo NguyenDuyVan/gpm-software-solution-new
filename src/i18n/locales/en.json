@@ -140,11 +140,20 @@
       "verified": "Verified",
       "unverified": "Unverified"
     },
+    "account_status_title": "Affiliate Status",
+    "aff_point": "Points:",
+    "show_history": "Show history",
+    "hide_history": "Hide history",
+    "available_withdraw": "Available for withdrawal",
+    "no_withdraw_history": "No withdrawal history yet",
     "desc": "To join the affiliate program, please contact us through our <a style='color:#0d6efd' href='https://facebook.com/giaiphapmmodotnet' target='blank'>FanPage</a>. Only then can your affiliate code be used!",
     "aff_code": "Referral code",
+    "aff_link": "Referral link",
     "withdraw": "Withdraw",
     "withdraw_history": "Withdrawal history",
     "aff_history": "Affiliate history",
+    "referral_links_title": "Your Referral Links",
+    "referral_links_desc": "Share these links with potential customers. You'll earn commission points for every successful referral.",
     "table": {
       "time": "Created time",
       "customer": "Customer",
@@ -153,7 +162,14 @@
     },
     "noti": {
       "coppied": "Copied to clipboard"
-    }
+    },
+    "pro_tip": "Pro Tip",
+    "pro_tip_desc": "Add your referral link to your social media profiles, email signature, or website to maximize your earnings.",
+    "boost_earnings": "Boost Your Earnings",
+    "boost_earnings_desc": "Learn how to maximize your affiliate income with these proven strategies.",
+    "tip_share_social": "Share on social media",
+    "tip_create_tutorial": "Create tutorial content",
+    "tip_engage_customers": "Engage with potential customers"
   },
   "affiliate_withdraw": {
     "title": "Withdrawal request",
@@ -167,7 +183,9 @@
       "time": "Request time",
       "withdraw_point": "Affiliate points",
       "status": "Status",
-      "detail": "Details"
+      "detail": "Details",
+      "status_completed": "Completed",
+      "status_processing": "Processing"
     },
     "noti": {
       "send_withdraw": {

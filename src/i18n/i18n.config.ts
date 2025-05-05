@@ -6,11 +6,11 @@ export default defineI18nConfig(() => {
     legacy: false,
     globalInjection: true,
     silentTranslationWarn: true,
-    fallbackLocale: 'vi',
-    locale: 'vi',
+    fallbackLocale: 'en',
+    locale: 'en',
     messages: {
-      vi,
       en,
+      vi,
     },
     warnHtmlMessage: false,
     compilation: {

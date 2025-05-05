@@ -140,11 +140,27 @@
       "verified": "Đã xác minh",
       "unverified": "Chưa xác minh"
     },
+    "account_status_title": "Trạng thái affiliate",
+    "aff_point": "Điểm:",
+    "show_history": "Xem lịch sử",
+    "hide_history": "Ẩn lịch sử",
+    "available_withdraw": "Số dư khả dụng",
+    "no_withdraw_history": "Chưa có lịch sử rút tiền",
     "desc": "Để tham gia chương trình affiliate, vui lòng liên hệ với chúng tôi thông qua <a style='color:#0d6efd' href='https://facebook.com/giaiphapmmodotnet' target='blank'>FanPage</a>. Sau đó mã affiliate của bạn mới có thể được sử dụng!",
     "aff_code": "Mã giới thiệu",
+    "aff_link": "Link giới thiệu",
     "withdraw": "Rút tiền",
     "withdraw_history": "Lịch sử rút tiền",
     "aff_history": "Lịch sử affiliate",
+    "pro_tip": "Mẹo hay",
+    "pro_tip_desc": "Thêm link giới thiệu vào hồ sơ mạng xã hội, chữ ký email hoặc website của bạn để tối đa hóa thu nhập.",
+    "boost_earnings": "Tăng thu nhập Affiliate",
+    "boost_earnings_desc": "Tìm hiểu cách tối ưu hóa thu nhập affiliate với các chiến lược đã được kiểm chứng.",
+    "tip_share_social": "Chia sẻ lên mạng xã hội",
+    "tip_create_tutorial": "Tạo nội dung hướng dẫn",
+    "tip_engage_customers": "Tương tác với khách hàng tiềm năng",
+    "referral_links_title": "Liên kết giới thiệu của bạn",
+    "referral_links_desc": "Chia sẻ các liên kết này với khách hàng tiềm năng. Bạn sẽ nhận được điểm hoa hồng cho mỗi lượt giới thiệu thành công.",
     "table": {
       "time": "Thời gian",
       "customer": "Khách hàng",
@@ -167,7 +183,9 @@
       "time": "Thời gian đặt lệnh",
       "withdraw_point": "Số affiliate point",
       "status": "Trạng thái",
-      "detail": "Chi tiết"
+      "detail": "Chi tiết",
+      "status_completed": "Hoàn thành",
+      "status_processing": "Đang xử lý"
     },
     "noti": {
       "send_withdraw": {

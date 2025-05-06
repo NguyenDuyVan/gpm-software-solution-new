@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <!-- Left Column -->
       <div class="lg:col-span-2 space-y-6">
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
           <div class="h-2 bg-gradient-to-r from-emerald-400 to-emerald-600" />
           <div class="p-6">
             <div class="flex items-start justify-between mb-4">
@@ -33,14 +33,14 @@
                   v-html="$t('affiliate_page.desc')"
                 ></small>
               </div>
-              <div class="bg-amber-100 p-2 rounded-full">
-                <i class="h-5 w-5 text-amber-600 pi pi-trophy" />
+              <div class="bg-amber-100 h-10 w-10 flex justify-center items-center p-5 rounded-full">
+                <i class="text-amber-600 pi pi-trophy" />
               </div>
             </div>
           </div>
         </div>
 
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
           <div class="px-6 py-4 border-b border-slate-200">
             <div class="flex items-center">
               <i class="pi pi-link h-5 w-5 text-emerald-600 mr-2" />
@@ -94,18 +94,18 @@
               </div>
             </div>
 
-            <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
+            <Message severity="info" closable>
               <p class="font-medium">{{ $t('affiliate_page.pro_tip') }}</p>
-              <p class="mt-1">
+              <p class="mt-1 text-sm italic">
                 {{ $t('affiliate_page.pro_tip_desc') }}
               </p>
-            </div>
+            </Message>
           </div>
         </div>
 
         <div>
           <!-- Affiliate History -->
-          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-200">
               <h3 class="text-lg font-medium">
                 {{ $t('affiliate_page.aff_history') }}
@@ -141,7 +141,7 @@
       <!-- Right Column -->
       <div class="lg:col-span-1 space-y-6">
         <!-- Withdrawal Section -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
           <div class="px-6 py-4 border-b border-slate-200">
             <div class="flex justify-between items-center">
               <h3 class="text-lg font-medium">
@@ -161,11 +161,15 @@
             </div>
           </div>
           <div class="p-6">
-            <div class="bg-gray-50 dark:bg-gray-500 rounded-lg p-4 mb-4">
+            <div
+              class="bg-gray-50 border border-gray-200 dark:border-gray-500 dark:bg-gray-800 rounded-lg p-4 mb-4"
+            >
               <div class="flex items-center justify-between">
                 <div>
                   <p class="text-sm">{{ $t('affiliate_page.available_withdraw') }}</p>
-                  <p class="text-2xl font-semibold">$320.50</p>
+                  <p class="text-2xl font-semibold text-green-600">
+                    {{ dashboardObj.user.affiliate_point }}
+                  </p>
                 </div>
                 <div
                   class="p-3 h-12 w-12 flex justify-center items-center bg-emerald-100 rounded-full"
@@ -181,7 +185,8 @@
               :label="$t('affiliate_page.withdraw')"
               icon="pi pi-arrow-right"
               class="w-full py-2.5 px-4 font-medium flex items-center justify-center"
-              :severity="dashboardObj.user.affiliate_point >= 500 ? 'success' : 'secondary'"
+              :severity="dashboardObj.user.affiliate_point >= 500 ? 'help' : 'secondary'"
+              @click="() => $router.push('/affiliate-withdraw')"
             />
 
             <div v-if="showHistory" class="mt-6">
@@ -215,7 +220,7 @@
 
         <!-- Tips Section -->
         <div
-          class="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl p-6 text-white shadow-sm"
+          class="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl p-6 text-white shadow-md"
         >
           <h3 class="text-lg font-medium mb-2">{{ $t('affiliate_page.boost_earnings') }}</h3>
           <p class="text-emerald-100 mb-4">

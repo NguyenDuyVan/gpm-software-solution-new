@@ -1,393 +1,268 @@
 <template>
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- Left Column -->
-      <div class="lg:col-span-2 space-y-6">
-        <!-- Affiliate Status -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="h-2 bg-gradient-to-r from-emerald-400 to-emerald-600" />
-          <div class="p-6">
-            <div class="flex items-start justify-between mb-4">
-              <div>
-                <div class="flex items-center">
-                  <h3 class="text-lg font-medium text-slate-900 mr-2">Affiliate Status</h3>
-                  <Tag
-                    :value="currentTier.name"
-                    :severity="
-                      currentTierIndex === 0
-                        ? 'secondary'
-                        : currentTierIndex === 1
-                          ? 'success'
-                          : currentTierIndex === 2
-                            ? 'warning'
-                            : 'info'
-                    "
-                    class="ml-2"
-                  />
-                </div>
-                <p class="mt-1 text-sm text-slate-500">
-                  Your current affiliate points:
-                  <span class="font-medium text-slate-700">{{
-                    currentPoints.toLocaleString()
-                  }}</span>
-                </p>
-              </div>
-              <div class="bg-amber-100 p-2 rounded-full">
-                <i class="h-5 w-5 text-amber-600 pi pi-trophy" />
-              </div>
-            </div>
+  <div class="card animate-fade-in">
+    <div class="card-header">
+      <h2 class="text-lg font-semibold text-primary-800">{{ $t('withdrawForm.title') }}</h2>
+    </div>
+    <div class="card-body">
+      <p class="text-sm text-gray-600 mb-4">
+        {{ $t('withdrawForm.minimumWithdrawal', { min: 500, multiplier: 10 }) }}
+      </p>
+
+      <div class="mb-6">
+        <label for="amount" class="block text-sm font-medium text-gray-700 mb-1">
+          {{ $t('withdrawForm.amount') }}
+        </label>
+        <div class="relative">
+          <input
+            id="amount"
+            v-model="amount"
+            type="number"
+            class="input-field pr-12"
+            :class="{ 'border-danger-500 focus:ring-danger-500': amountError }"
+            min="0"
+            step="10"
+            @input="validateAmount"
+          />
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <span class="text-gray-500">{{ $t('general.points') }}</span>
           </div>
         </div>
+        <p v-if="amountError" class="mt-1 text-sm text-danger-500 animate-pulse-once">
+          {{ amountError }}
+        </p>
+      </div>
 
-        <!-- Referral Section -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="px-6 py-4 border-b border-slate-200">
-            <div class="flex items-center">
-              <i class="pi pi-link h-5 w-5 text-emerald-600 mr-2" />
-              <h3 class="text-lg font-medium text-slate-900">Your Referral Links</h3>
-            </div>
-          </div>
-          <div class="p-6 space-y-4">
-            <p class="text-sm text-slate-600 mb-4">
-              Share these links with potential customers. You'll earn commission points for every
-              successful referral.
-            </p>
-
-            <div v-for="field in referralFields" :key="field.label" class="mb-4">
-              <label class="block text-sm font-medium text-slate-700 mb-1">{{ field.label }}</label>
-              <div class="relative flex">
-                <InputText
-                  :value="field.value"
-                  readonly
-                  :class="`w-full pr-10 ${field.type === 'code' ? 'font-mono text-sm' : ''}`"
-                />
-                <Button
-                  icon="pi pi-copy"
-                  class="absolute right-0 inset-y-0 px-3 flex items-center justify-center"
-                  :severity="copied[field.label] ? 'success' : 'secondary'"
-                  rounded
-                  text
-                  @click="copyToClipboard(field.value, field.label)"
-                />
-              </div>
-            </div>
-
-            <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
-              <p class="font-medium">Pro Tip</p>
-              <p class="mt-1">
-                Add your referral link to your social media profiles, email signature, or website to
-                maximize your earnings.
-              </p>
-            </div>
-          </div>
+      <div class="mb-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
+        <h3 class="font-medium text-gray-700 mb-2">
+          {{ $t('withdrawForm.bankAccountInfo') }}
+        </h3>
+        <div v-if="hasBankAccount" class="text-sm text-gray-600">
+          <!-- Bank information would go here -->
+          <p>{{ bankName }}</p>
+          <p>{{ maskAccountNumber(accountNumber) }}</p>
+          <p>{{ accountHolder }}</p>
         </div>
+        <div v-else class="text-sm text-gray-500 italic">
+          {{ $t('withdrawForm.noBankAccount') }}
+        </div>
+        <button
+          class="mt-3 text-sm text-primary-600 hover:text-primary-800 font-medium flex items-center transition-colors"
+          @click="editBankDetails"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+            />
+          </svg>
+          {{ $t('withdrawForm.editBankDetails') }}
+        </button>
+      </div>
 
-        <!-- Affiliate History -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="px-6 py-4 border-b border-slate-200">
-            <div class="flex justify-between items-center">
-              <h3 class="text-lg font-medium text-slate-900">Affiliate History</h3>
-              <Tag value="Active" severity="success" />
-            </div>
-          </div>
-          <DataTable :value="historyData" class="w-full" data-key="id" striped-rows>
-            <Column field="date" header="Date & Time">
-              <template #body="slotProps">
-                {{ formatDate(slotProps.data.date) }}
-              </template>
-            </Column>
-            <Column field="customer" header="Customer" />
-            <Column field="software" header="Product" />
-            <Column field="points" header="Points">
-              <template #body="slotProps">
-                <span class="font-medium text-emerald-600">+{{ slotProps.data.points }}</span>
-              </template>
-            </Column>
-            <Column field="status" header="Status">
-              <template #body="slotProps">
-                <Tag
-                  :value="slotProps.data.status === 'completed' ? 'Completed' : 'Pending'"
-                  :severity="slotProps.data.status === 'completed' ? 'success' : 'warning'"
-                />
-              </template>
-            </Column>
-          </DataTable>
+      <div class="alert alert-warning">
+        <div class="flex">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2 flex-shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            />
+          </svg>
+          <p class="text-sm">
+            {{ $t('withdrawForm.processingTimeWarning', { days: '3-5' }) }}
+          </p>
         </div>
       </div>
 
-      <!-- Right Column -->
-      <div class="lg:col-span-1 space-y-6">
-        <!-- Withdrawal Section -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="px-6 py-4 border-b border-slate-200">
-            <div class="flex justify-between items-center">
-              <h3 class="text-lg font-medium text-slate-900">Withdrawal</h3>
-              <Button
-                :label="showHistory ? 'Hide History' : 'Show History'"
-                icon="pi pi-history"
-                text
-                class="px-3 py-1.5 text-sm"
-                @click="showHistory = !showHistory"
-              />
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="bg-slate-50 rounded-lg p-4 mb-4">
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-sm text-slate-500">Available for withdrawal</p>
-                  <p class="text-2xl font-semibold text-slate-900">
-                    {{ formatCurrency(availableAmount) }}
-                  </p>
-                </div>
-                <div class="p-3 bg-emerald-100 rounded-full">
-                  <i class="pi pi-wallet h-6 w-6 text-emerald-600" />
-                </div>
-              </div>
-              <p v-if="!canWithdraw" class="mt-2 text-xs text-amber-600">
-                Minimum withdrawal amount is {{ formatCurrency(minimumWithdrawal) }}
-              </p>
-            </div>
-
-            <Button
-              :disabled="!canWithdraw"
-              label="Withdraw Funds"
-              icon="pi pi-arrow-right"
-              class="w-full py-2.5 px-4 font-medium flex items-center justify-center"
-              :severity="canWithdraw ? 'success' : 'secondary'"
-            />
-
-            <div v-if="showHistory" class="mt-6">
-              <h4 class="text-sm font-medium text-slate-700 mb-3">Withdrawal History</h4>
-              <div v-if="withdrawalHistory.length" class="space-y-3">
-                <div
-                  v-for="item in withdrawalHistory"
-                  :key="item.id"
-                  class="flex items-center justify-between p-3 bg-white border border-slate-200 rounded-lg"
-                >
-                  <div>
-                    <p class="text-sm font-medium text-slate-800">
-                      {{ formatCurrency(item.amount) }}
-                    </p>
-                    <p class="text-xs text-slate-500">{{ formatDate(item.date) }}</p>
-                  </div>
-                  <Tag
-                    :value="item.status === 'completed' ? 'Completed' : 'Processing'"
-                    :severity="item.status === 'completed' ? 'success' : 'warning'"
-                  />
-                </div>
-              </div>
-              <p v-else class="text-sm text-slate-500 text-center py-4">
-                No withdrawal history yet
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tips Section -->
-        <div
-          class="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl p-6 text-white shadow-sm"
-        >
-          <h3 class="text-lg font-medium mb-2">Boost Your Earnings</h3>
-          <p class="text-emerald-100 mb-4">
-            Learn how to maximize your affiliate income with these proven strategies.
-          </p>
-          <ul class="space-y-2 mb-4">
-            <li v-for="(tip, index) in earningTips" :key="index" class="flex items-start">
-              <span class="inline-block h-5 w-5 rounded-full bg-white/20 flex-shrink-0 mr-2" />
-              <span class="text-sm">{{ tip }}</span>
-            </li>
-          </ul>
-          <a
-            href="#"
-            class="inline-block w-full py-2 px-4 bg-white text-emerald-700 rounded-lg text-sm font-medium text-center transition-colors hover:bg-emerald-50"
+      <div v-if="successMessage" class="alert alert-success mt-4 animate-fade-in">
+        <div class="flex">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2 flex-shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            View Affiliate Guide
-          </a>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <p class="text-sm">{{ successMessage }}</p>
         </div>
+      </div>
+
+      <div class="mt-6">
+        <button
+          class="btn btn-primary w-full flex justify-center items-center"
+          :class="{ 'opacity-50 cursor-not-allowed': isSubmitting || !isFormValid }"
+          :disabled="isSubmitting || !isFormValid"
+          @click="submitWithdrawal"
+        >
+          <span v-if="isSubmitting" class="mr-2">
+            <svg
+              class="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </span>
+          {{ $t('withdrawForm.submitButton') }}
+        </button>
       </div>
     </div>
-  </main>
+
+    <div class="mt-8 mx-auto">
+      <DataTable :value="affOrderObjs" :loading="inLoading" class="w-full" data-key="id">
+        <template #empty>
+          <div class="text-center text-gray-400 py-4">{{ $t('common.no_data') }}</div>
+        </template>
+        <Column field="created_at" :header="$t('affiliate_withdraw.table.time')">
+          <template #body="slotProps">
+            {{ formatDateTimeString(slotProps.data.created_at) }}
+          </template>
+        </Column>
+        <Column field="withdraw_point" :header="$t('affiliate_withdraw.table.withdraw_point')" />
+        <Column field="status" :header="$t('affiliate_withdraw.table.status')">
+          <template #body="slotProps">
+            <span :class="statusClass(slotProps.data.status)">
+              {{ slotProps.data.status }}
+            </span>
+          </template>
+        </Column>
+        <Column :header="''">
+          <template #body="slotProps">
+            <Button
+              :label="$t('affiliate_withdraw.table.detail')"
+              class="p-button-secondary"
+              @click="goAffiliateDetail(slotProps.data.id)"
+            />
+          </template>
+        </Column>
+      </DataTable>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
   definePageMeta({
     layout: 'admin',
+    middleware: undefined,
+  });
+  // State
+  const amount = ref(0);
+  const amountError = ref('');
+  const isSubmitting = ref(false);
+  const successMessage = ref('');
+
+  // Mock data (in a real app, this would come from API)
+  const hasBankAccount = ref(false);
+  const bankName = ref('');
+  const accountNumber = ref('');
+  const accountHolder = ref('');
+
+  // Computed
+  const isFormValid = computed(() => {
+    return amount.value >= 500 && amount.value % 10 === 0 && !amountError.value;
   });
 
-  const toast = useToast();
+  // Methods
+  const validateAmount = () => {
+    amountError.value = '';
 
-  // Stats data
-  const stats = [
-    {
-      title: 'Total Referrals',
-      value: '42',
-      icon: 'pi-user pi',
-      trend: { value: 12, positive: true },
-    },
-    {
-      title: 'Earnings',
-      value: '$520.80',
-      icon: 'pi-dollar pi',
-      trend: { value: 8, positive: true },
-    },
-    {
-      title: 'Conversion Rate',
-      value: '3.2%',
-      icon: 'pi-chart-line pi',
-      trend: { value: 1.5, positive: false },
-    },
-    {
-      title: 'Affiliate Points',
-      value: '1,240',
-      icon: 'pi-trophy pi',
-      trend: { value: 5, positive: true },
-    },
-  ];
-
-  const tiers = [
-    { name: 'Bronze', min: 0, max: 500 },
-    { name: 'Silver', min: 500, max: 2000 },
-    { name: 'Gold', min: 2000, max: 5000 },
-    { name: 'Platinum', min: 5000, max: 10000 },
-  ];
-
-  const currentPoints = 1240;
-  const currentTierIndex = computed(() =>
-    tiers.findIndex(
-      (tier, index) =>
-        currentPoints >= tier.min && (currentPoints < tier.max || index === tiers.length - 1)
-    )
-  );
-
-  const currentTier = computed(() => tiers[currentTierIndex.value]);
-  const nextTier = computed(() =>
-    currentTierIndex.value < tiers.length - 1 ? tiers[currentTierIndex.value + 1] : null
-  );
-
-  const progressToNextTier = computed(() =>
-    nextTier.value
-      ? Math.min(
-          100,
-          ((currentPoints - currentTier.value.min) / (nextTier.value.min - currentTier.value.min)) *
-            100
-        )
-      : 100
-  );
-
-  const pointsToNextTier = computed(() =>
-    nextTier.value ? nextTier.value.min - currentPoints : 0
-  );
-
-  const referralCode = 'KYDQRIX37K';
-  const referralLink = 'https://gpmloginapp.com?ref=KYDQRIX37K';
-
-  const referralFields = [
-    { label: 'Referral Code', value: referralCode, type: 'code' },
-    { label: 'Referral Link', value: referralLink, type: 'link' },
-  ];
-
-  const copied = ref<Record<string, boolean>>({});
-
-  const copyToClipboard = async (value: string, label: string) => {
-    try {
-      await navigator.clipboard.writeText(value);
-      copied.value[label] = true;
-      toast.add({
-        severity: 'success',
-        summary: 'Copied!',
-        detail: `${label} copied to clipboard`,
-        life: 1500,
-      });
-      setTimeout(() => {
-        copied.value[label] = false;
-      }, 2000);
-    } catch (error) {
-      toast.add({
-        severity: 'error',
-        summary: 'Copy failed',
-        detail: 'Failed to copy text',
-        life: 2000,
-      });
+    if (amount.value < 500) {
+      amountError.value = $t('withdrawForm.errors.minimumAmount');
+    } else if (amount.value % 10 !== 0) {
+      amountError.value = $t('withdrawForm.errors.multipleRequired');
     }
   };
 
-  const historyData = [
-    {
-      id: 1,
-      date: '2025-04-10T10:30:00',
-      customer: 'John Smith',
-      software: 'Premium Plan',
-      points: 120,
-      status: 'completed',
-    },
-    {
-      id: 2,
-      date: '2025-04-08T14:45:00',
-      customer: 'Emma Johnson',
-      software: 'Basic Plan',
-      points: 50,
-      status: 'completed',
-    },
-    {
-      id: 3,
-      date: '2025-04-05T09:15:00',
-      customer: 'Michael Brown',
-      software: 'Enterprise Plan',
-      points: 250,
-      status: 'completed',
-    },
-    {
-      id: 4,
-      date: '2025-04-02T16:20:00',
-      customer: 'Sophia Garcia',
-      software: 'Premium Plan',
-      points: 120,
-      status: 'completed',
-    },
-  ];
-
-  const showHistory = ref(false);
-  const availableAmount = 320.5;
-  const minimumWithdrawal = 50;
-  const canWithdraw = computed(() => availableAmount >= minimumWithdrawal);
-
-  const withdrawalHistory = [
-    {
-      id: 1,
-      date: '2025-04-01T14:30:00',
-      amount: 150,
-      status: 'completed',
-    },
-    {
-      id: 2,
-      date: '2025-03-15T09:45:00',
-      amount: 200,
-      status: 'completed',
-    },
-  ];
-
-  const earningTips = [
-    'Share on social media',
-    'Create tutorial content',
-    'Engage with potential customers',
-  ];
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(date);
+  const maskAccountNumber = number => {
+    if (!number) return '';
+    const visible = number.slice(-4);
+    const masked = '•'.repeat(number.length - 4);
+    return masked + visible;
   };
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(amount);
+  const editBankDetails = () => {
+    // In a real application, this would open a modal or navigate to bank details page
+    alert($t('withdrawForm.bankDetailsEditMessage'));
+  };
+
+  const submitWithdrawal = async () => {
+    if (!isFormValid.value) return;
+
+    isSubmitting.value = true;
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      successMessage.value = $t('withdrawForm.successMessage');
+      amount.value = 0;
+
+      // Simulate redirect after success
+      setTimeout(() => {
+        // Would navigate to confirmation page in real app
+        successMessage.value = '';
+      }, 3000);
+    } catch (error) {
+      console.error('Withdrawal submission error:', error);
+    } finally {
+      isSubmitting.value = false;
+    }
+  };
+
+  // Translation function (simplified for demo)
+  const $t = (key, params = {}) => {
+    const translations = {
+      'withdrawForm.title': 'Lệnh rút tiền',
+      'withdrawForm.minimumWithdrawal': `Số Affiliate point tối thiểu để đặt lệnh rút tiền là ${params.min} và là bội số của ${params.multiplier}`,
+      'withdrawForm.amount': 'Số lượng điểm',
+      'withdrawForm.bankAccountInfo': 'Tài khoản nhận tiền:',
+      'withdrawForm.noBankAccount': 'Chưa có thông tin về tài khoản của bạn',
+      'withdrawForm.editBankDetails': 'Chỉnh sửa thông tin',
+      'withdrawForm.processingTimeWarning': `Lệnh rút tiền sẽ được xử lý trong vòng ${params.days} ngày làm việc kể từ ngày đặt lệnh rút. Hãy đảm bảo bạn đã điền thông tin ngân hàng chính xác tại mục thông tin tài khoản, chúng tôi sẽ không chịu bất cứ trách nhiệm nào nếu thông tin của bạn không đúng!`,
+      'withdrawForm.submitButton': 'Đặt lệnh rút tiền',
+      'withdrawForm.successMessage': 'Yêu cầu rút tiền của bạn đã được gửi thành công!',
+      'withdrawForm.bankDetailsEditMessage':
+        'Chức năng chỉnh sửa thông tin ngân hàng sẽ được mở ra trong một cửa sổ mới.',
+      'withdrawForm.errors.minimumAmount': 'Số điểm tối thiểu phải là 500',
+      'withdrawForm.errors.multipleRequired': 'Số điểm phải là bội số của 10',
+      'general.points': 'điểm',
+    };
+
+    return translations[key] || key;
   };
 </script>

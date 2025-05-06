@@ -34,26 +34,23 @@
 
               <div
                 v-if="showUserMenu"
-                class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-xl shadow-2xl p-2 z-50 space-y-1"
+                class="absolute right-0 mt-2 w-42 bg-white dark:bg-gray-700 rounded-xl shadow-2xl p-2 z-50 space-y-1"
               >
                 <NuxtLink
-                  to="/admin/profile"
+                  to="/my-account"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-gray-100 rounded-xl"
                 >
+                  <i class="pi pi-user mr-2"></i>
                   My Profile
                 </NuxtLink>
-                <NuxtLink
-                  to="/admin/settings"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-gray-100 rounded-xl"
-                >
-                  Security
-                </NuxtLink>
+                <Divider class="my-2" />
 
                 <NuxtLink
                   to="/login"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-gray-100 rounded-xl"
                   @click="logout"
                 >
+                  <i class="pi pi-sign-out mr-2"></i>
                   Sign out
                 </NuxtLink>
               </div>

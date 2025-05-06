@@ -3,6 +3,8 @@
 @import 'primeicons/primeicons.css';
 @custom-variant dark (&:where(.dark, .dark *));
 
+@config "../../../tailwind.config.ts";
+
 :root {
   /* --p-primary-color: var(--p-blue-500);
   --p-primary-color-hover: var(--p-blue-600);
@@ -68,4 +70,24 @@ h6 {
 .p-toast-close-button {
   outline: none !important;
   border: none !important;
+}
+
+@keyframes shake-test {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
 }

@@ -1,49 +1,108 @@
 <template>
-  <div>
-    <div class="text-center mb-4">
-      <h5>{{ $t('affiliate_withdraw.title') }} ({{ userObj.affiliate_point }} point)</h5>
-    </div>
-    <div class="bg-white rounded shadow p-6 max-w-xl mx-auto">
-      <p class="text-gray-500">{{ $t('affiliate_withdraw.desc') }}</p>
-      <div class="flex items-center mt-4 gap-2">
-        <InputNumber v-model="withDrawPoint" :min="0" class="w-32" input-class="w-full" />
-        <Button
-          :label="$t('affiliate_withdraw.btn_withdraw')"
-          class="p-button-success"
-          @click="sendWithDrawCommand"
-        />
+  <div class="max-w-5xl mx-auto space-y-4">
+    <div class="flex gap-4 flex-wrap">
+      <div
+        class="p-4 space-y-2 flex-1 shadow-md bg-indigo-100 dark:bg-indigo-500 rounded-2xl text-indigo-700"
+      >
+        <div class="flex gap-2 items-center font-semibold">
+          <i class="pi pi-dollar animate-shake"></i>
+          <p>Điểm khả dụng</p>
+        </div>
+        <h3>{{ userObj.affiliate_point }}</h3>
       </div>
-      <div class="my-4 bg-gray-100 rounded p-4">
-        <label class="font-semibold">{{ $t('affiliate_withdraw.account_withdraw') }}</label>
-        <div>
-          <span
-            v-if="
-              userObj.payment_bank_id || userObj.payment_bank_name || userObj.payment_bank_user_name
-            "
-            class="font-bold text-gray-700"
-          >
-            {{ userObj.payment_bank_id }} / {{ userObj.payment_bank_name }} -
-            {{ userObj.payment_bank_user_name }}
-          </span>
-          <span v-else class="text-gray-400 italic">
-            {{ $t('affiliate_withdraw.bank_info') }}
-          </span>
+      <div
+        class="p-4 space-y-2 flex-1 shadow-md bg-emerald-100 dark:bg-emerald-500 rounded-2xl text-emerald-700"
+      >
+        <div class="flex gap-2 items-center font-semibold">
+          <i class="pi pi-check-circle animate-bounce"></i>
+          <p>Đã hoàn thành</p>
         </div>
+        <h3>100</h3>
       </div>
-      <div class="text-sm text-orange-600 space-y-2">
-        <div>
-          <i class="fas fa-exclamation-triangle mr-1"></i>
-          <span v-html="$t('affiliate_withdraw.infor_first')"></span>
+      <div
+        class="p-4 space-y-2 flex-1 shadow-md bg-amber-100 dark:bg-amber-500 rounded-2xl text-amber-700"
+      >
+        <div class="flex gap-2 items-center font-semibold">
+          <i class="pi pi-spinner-dotted animate-spin"></i>
+          <p>Đang chờ xử lý</p>
         </div>
-        <div>
-          <i class="fas fa-exclamation-triangle mr-1"></i>
-          <span v-html="$t('affiliate_withdraw.info_second')"></span>
-        </div>
+        <h3>100</h3>
       </div>
     </div>
+    <Card>
+      <template #title>
+        <h4 class="text-primary mb-2">{{ $t('affiliate_withdraw.title') }}</h4>
+      </template>
+      <template #content>
+        <div class="space-y-4">
+          <p class="text-gray-500">
+            {{ $t('affiliate_withdraw.desc') }}
+          </p>
 
-    <div class="mt-8 max-w-3xl mx-auto">
-      <DataTable :value="affOrderObjs" :loading="inLoading" class="w-full" data-key="id">
+          <div class="flex flex-col gap-2">
+            <label class="font-semibold">Số lượng điểm</label>
+            <InputNumber v-model="withDrawPoint" :min="0" class="w-full">
+              <template #incrementicon>
+                <span class="pi pi-plus" />
+              </template>
+              <template #decrementicon>
+                <span class="pi pi-minus" />
+              </template>
+            </InputNumber>
+          </div>
+
+          <div
+            class="my-4 bg-gray-100 dark:bg-gray-800 p-4 space-y-2 rounded-xl border border-gray-300 dark:border-gray-700"
+          >
+            <label class="font-semibold block">{{
+              $t('affiliate_withdraw.account_withdraw')
+            }}</label>
+            <div>
+              <span
+                v-if="
+                  userObj.payment_bank_id ||
+                  userObj.payment_bank_name ||
+                  userObj.payment_bank_user_name
+                "
+                class="font-bold text-gray-700"
+              >
+                {{ userObj.payment_bank_id }} / {{ userObj.payment_bank_name }} -
+                {{ userObj.payment_bank_user_name }}
+              </span>
+              <span v-else class="text-gray-500 text-sm italic">
+                {{ $t('affiliate_withdraw.bank_info') }}
+              </span>
+            </div>
+          </div>
+          <div class="text-orange-600 space-y-4">
+            <Message severity="warn" icon="pi pi-exclamation-circle" closable>
+              <span class="text-sm" v-html="$t('affiliate_withdraw.infor_first')"></span>
+            </Message>
+
+            <Message severity="warn" icon="pi pi-exclamation-circle" closable>
+              <span class="text-sm" v-html="$t('affiliate_withdraw.info_second')"></span>
+            </Message>
+          </div>
+        </div>
+      </template>
+      <template #footer>
+        <div class="text-center">
+          <Button
+            :label="$t('affiliate_withdraw.btn_withdraw')"
+            class="w-full mt-4"
+            severity="help"
+            @click="sendWithDrawCommand"
+          />
+        </div>
+      </template>
+    </Card>
+    <div class="mt-8 mx-auto">
+      <DataTable
+        :value="affOrderObjs"
+        :loading="inLoading"
+        class="w-full rounded-xl overflow-hidden shadow-md"
+        data-key="id"
+      >
         <template #empty>
           <div class="text-center text-gray-400 py-4">{{ $t('common.no_data') }}</div>
         </template>

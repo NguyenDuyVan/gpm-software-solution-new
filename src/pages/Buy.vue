@@ -1,5 +1,5 @@
 <template>
-  <Card v-if="!isLoading" class="bg-white dark:bg-gray-800 shadow rounded-xl">
+  <Card v-if="!isLoading" class="bg-white dark:bg-gray-800 rounded-xl shadow-md">
     <template #title>
       <div class="flex justify-between items-center">
         <h4 class="text-primary mb-2">{{ $t('buy_page.software_info.title') }}</h4>

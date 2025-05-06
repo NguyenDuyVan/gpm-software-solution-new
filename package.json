@@ -28,6 +28,7 @@
     "@types/node": "^22.13.13",
     "@unhead/vue": "^2.0.0-rc.8",
     "axios": "^1.8.4",
+    "dompurify": "^3.2.5",
     "js-cookie": "^3.0.5",
     "nuxt": "^3.16.1",
     "pinia": "^3.0.2",

@@ -1,5 +1,5 @@
 <template>
-  <Card class="max-w-5xl w-full mx-auto">
+  <Card class="max-w-5xl w-full mx-auto shadow-lg">
     <template #title>
       <h5 class="text-xl font-semibold">
         {{ t('support_page.title') }}

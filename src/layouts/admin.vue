@@ -17,7 +17,7 @@
             v-if="items.length > 0"
             :home="home"
             :model="items"
-            class="bg-unset w-fit shrink-0 rounded-2xl shadow bg-white dark:bg-gray-800"
+            class="bg-unset z-50 sticky top-0 w-fit shrink-0 rounded-2xl shadow bg-white dark:bg-gray-800"
             pt:root="py-1.5 px-4"
           >
             <template #item="{ item, props }">
@@ -37,7 +37,7 @@
             </template>
           </Breadcrumb>
 
-          <div class="flex-1">
+          <div class="flex-1 container mx-auto">
             <slot />
           </div>
         </div>
@@ -70,13 +70,15 @@
         return [{ label: 'License Management', route: '/license-management' }];
       case '/affiliate':
         return [{ label: 'Affiliate', route: '/affiliate' }];
-      case '/affiliate-Withdraw':
+      case '/affiliate-withdraw':
         return [
           { label: 'Affiliate', route: '/affiliate' },
-          { label: 'Withdraw', route: '/affiliate-Withdraw' },
+          { label: 'Withdraw', route: '/affiliate-withdraw' },
         ];
       case '/support':
         return [{ label: 'Support', route: '/support' }];
+      case '/my-account':
+        return [{ label: 'My Account', route: '/my-account' }];
       default:
         return [];
     }

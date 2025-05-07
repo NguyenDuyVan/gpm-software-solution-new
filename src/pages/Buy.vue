@@ -314,7 +314,7 @@
 
   definePageMeta({
     layout: 'admin',
-    middleware: undefined,
+    middleware: 'admin',
   });
 
   // Setup component

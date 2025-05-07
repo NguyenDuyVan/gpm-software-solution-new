@@ -208,8 +208,12 @@
 
   definePageMeta({
     layout: 'admin',
+    middleware: 'admin',
     path: '/license-management',
-    title: 'License Management',
+  });
+
+  useHead({
+    title: 'License Management | User site',
   });
 
   const {

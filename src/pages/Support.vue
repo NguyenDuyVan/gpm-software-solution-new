@@ -20,7 +20,6 @@
     <template #footer>
       <Button
         :label="t('support_page.contact')"
-        class="mt-8"
         icon="pi pi-facebook"
         severity="secondary"
         rounded
@@ -36,7 +35,7 @@
 
   definePageMeta({
     layout: 'admin',
-    middleware: undefined,
+    middleware: 'admin',
   });
 
   const { t } = useI18n();

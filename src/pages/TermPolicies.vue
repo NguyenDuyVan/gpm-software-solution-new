@@ -16,7 +16,7 @@
 <script lang="ts" setup>
   definePageMeta({
     layout: 'admin',
-    middleware: undefined,
+    middleware: 'admin',
     path: '/term-policies',
   });
 </script>

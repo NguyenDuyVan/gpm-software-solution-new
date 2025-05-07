@@ -1,130 +1,173 @@
 <template>
-  <div class="flex min-h-screen bg-base-100">
-    <div class="hidden lg:flex flex-col justify-center items-center w-1/2 bg-gray-50">
-      <img class="max-w-xs" src="@/assets/auth-img.png" alt="" />
+  <div
+    class="max-w-lg w-full mt-0 md:mt-8 lg:mt12 mx-auto my-auto p-4 md:p-8 rounded-2xl border border-gray-200 shadow-2xl bg-white"
+  >
+    <div class="mx-auto mb-4 w-full text-center">
+      <h3 class="font-bold">{{ $t('login.title') }}</h3>
+      <p class="text-sm md:text-base">
+        {{ $t('login.content') }}
+      </p>
     </div>
-    <div class="flex flex-col justify-center w-full lg:w-1/2 px-6 py-16">
-      <div class="max-w-md w-full mx-auto">
+    <div class="mt-4 mx-auto w-full">
+      <Form
+        v-slot="$form"
+        :resolver="resolver"
+        :initial-values
+        :validate-on-value-update="false"
+        validate-on-blur
+        class="flex flex-col gap-6 w-full"
+        @submit="handleLogin"
+      >
         <div>
-          <div class="mb-10 max-w-xs">
-            <img src="@/assets/logo-gpm.png" alt="" class="h-10" />
+          <label for="email" class="block text-sm/6 font-medium">Email </label>
+          <div class="mt-2">
+            <InputText
+              v-model="initialValues.email"
+              name="email"
+              type="email"
+              aria-autocomplete="both"
+              placeholder="Email"
+              fluid
+            />
+            <Message v-if="$form.email?.invalid" severity="error" size="small" variant="simple">{{
+              $form?.email?.error?.message
+            }}</Message>
           </div>
-          <h4 class="mb-3 text-2xl font-semibold">{{ $t('login.title') }}</h4>
-          <p class="mb-8 text-gray-500 text-lg">
-            {{ $t('login.content') }}
-          </p>
         </div>
-        <Form @submit="submitLogin">
-          <div class="mb-4">
-            <span class="p-input-icon-left w-full">
-              <i class="pi pi-envelope" />
-              <InputText
-                v-model="email"
-                type="email"
-                class="w-full"
-                :placeholder="$t('login.email')"
-                autocomplete="username"
-              />
+
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm/6 font-medium">{{ $t('login.pass') }}</label>
+            <div class="text-sm">
+              <a href="#" class="font-semibold text-primary hover:text-primary-600">
+                Forgot password?</a
+              >
+            </div>
+          </div>
+          <div class="mt-2">
+            <Password
+              v-model="initialValues.password"
+              name="password"
+              :feedback="false"
+              type="password"
+              class="w-full"
+              fluid
+              toggle-mask
+              :placeholder="$t('login.pass')"
+            />
+            <Message
+              v-if="$form?.password?.invalid"
+              severity="error"
+              size="small"
+              variant="simple"
+              >{{ $form.password.error?.message }}</Message
+            >
+          </div>
+          <Message v-if="errorMsg" severity="error" size="small" variant="simple">{{
+            errorMsg
+          }}</Message>
+        </div>
+
+        <div class="flex justify-between items-center mb-2">
+          <div class="flex items-center">
+            <Checkbox v-model="isRememberLogin" input-id="remember" binary class="mr-2" />
+            <label for="remember" class="text-gray-700 text-sm">
+              {{ $t('login.remember') }}
+            </label>
+          </div>
+          <NuxtLink to="/forgot-password" class="text-primary-600 font-medium text-sm">
+            {{ $t('login.forgot') }}
+          </NuxtLink>
+        </div>
+
+        <Button
+          type="submit"
+          :label="$t('login.submit')"
+          class="flex w-full justify-center !rounded-xl font-semibold"
+          :loading="isSubmit"
+        />
+
+        <div class="flex flex-col sm:flex-row justify-between items-center text-sm px-2">
+          <div class="mb-2 sm:mb-0">
+            <span>
+              {{ $t('login.re_signup') }}
+              <NuxtLink to="/register" class="text-primary-600 font-semibold">
+                &nbsp;{{ $t('login.sign_up') }}
+              </NuxtLink>
             </span>
           </div>
-          <div class="mb-5 relative">
-            <span class="p-input-icon-left w-full">
-              <i class="pi pi-lock" />
-              <Password
-                v-model="password"
-                :feedback="false"
-                :toggle-mask="true"
-                class="w-full"
-                :placeholder="$t('login.pass')"
-                input-id="your-password"
-                autocomplete="current-password"
-              />
-            </span>
-            <div v-if="errorMsg" class="text-red-500 text-sm mt-1">
-              {{ errorMsg }}
-            </div>
+          <div class="mt-2 sm:mt-0 flex gap-8">
+            <SwitchMode />
+            <MultiLang />
           </div>
-          <div class="flex justify-between items-center mb-2">
-            <div class="flex items-center">
-              <Checkbox v-model="isRememberLogin" input-id="remember" binary class="mr-2" />
-              <label for="remember" class="text-gray-700 text-sm">
-                {{ $t('login.remember') }}
-              </label>
-            </div>
-            <NuxtLink to="/forgot-password" class="text-primary-600 font-medium text-sm">
-              {{ $t('login.forgot') }}
-            </NuxtLink>
-          </div>
-          <Button
-            type="submit"
-            :label="$t('login.submit')"
-            class="w-full mt-8"
-            :loading="onSubmiting"
-            :disabled="onSubmiting"
-          />
-          <div class="mt-8 flex flex-col sm:flex-row justify-between items-center text-sm px-2">
-            <div class="mb-2 sm:mb-0">
-              <span>
-                {{ $t('login.re_signup') }}
-                <NuxtLink to="/sign-up" class="text-primary-600 font-semibold">
-                  &nbsp;{{ $t('login.sign_up') }}
-                </NuxtLink>
-              </span>
-            </div>
-            <div>
-              <MultiLang />
-            </div>
-          </div>
-        </Form>
-      </div>
+        </div>
+      </Form>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+  import type { FormSubmitEvent } from '@primevue/forms/form';
+  import { zodResolver } from '@primevue/forms/resolvers/zod';
+  import { z } from 'zod';
+
+  definePageMeta({
+    layout: 'auth',
+    path: '/login',
+  });
+
+  useHead({
+    title: 'Login | User site',
+  });
+
   const { t } = useI18n();
-  const router = useRouter();
   const { loginAsync } = useAuthService();
-  const title = 'Login | User site';
-  const email = ref<string>('');
-  const password = ref<string>('');
   const loginToken = ref<string>('');
-  const onSubmiting = ref(false);
+  const isSubmit = ref(false);
   const errorMsg = ref<string>('');
   const isRememberLogin = ref(true);
+  const initialValues = reactive({
+    email: '',
+    password: '',
+  });
 
-  onMounted(() => {
-    document.title = title;
+  onBeforeMount(() => {
     if (localStorage.getItem('isRememberLogin'))
       isRememberLogin.value =
         String(localStorage.getItem('isRememberLogin')).toLowerCase() === 'true';
-    if (isRememberLogin.value) email.value = localStorage.getItem('email') || '';
+    if (isRememberLogin.value) initialValues.email = localStorage.getItem('email') || '';
   });
 
-  const submitLogin = async () => {
-    onSubmiting.value = true;
+  const handleLogin = async (event: FormSubmitEvent<Record<string, any>>) => {
+    if (!event.valid) return;
+
+    isSubmit.value = true;
     errorMsg.value = '';
 
-    if (!loginToken.value) {
-      if (!email.value) {
-        onSubmiting.value = false;
-        errorMsg.value = t('login.email_required');
-        return;
-      } else if (!password.value || password.value.length < 6) {
-        onSubmiting.value = false;
-        errorMsg.value = t('login.pass_invalid');
-        return;
-      }
-    }
-
-    const loginResult = await loginAsync(email.value, password.value, loginToken.value);
+    const loginResult = await loginAsync(
+      initialValues.email,
+      initialValues.password,
+      loginToken.value
+    );
     if (loginResult.success === true) {
       localStorage.setItem('isRememberLogin', String(isRememberLogin.value));
-      localStorage.setItem('email', email.value);
-      router.push('/dashboard');
+      localStorage.setItem('email', initialValues.email);
+      navigateTo({ path: '/dashboard' });
     } else {
-      onSubmiting.value = false;
-      errorMsg.value = loginResult?.message || 'Login fscript Please try again!';
+      isSubmit.value = false;
+      errorMsg.value = loginResult?.message || t('login.failed');
     }
   };
+
+  const resolver = ref(
+    zodResolver(
+      z.object({
+        email: z
+          .string()
+          .min(1, { message: t('login.email_required') })
+          .email({ message: 'Invalid email address.' }),
+        password: z.string().min(6, { message: t('login.pass_invalid') }),
+      })
+    )
+  );
 </script>

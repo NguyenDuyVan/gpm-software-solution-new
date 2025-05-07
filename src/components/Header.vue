@@ -48,7 +48,7 @@
                 <NuxtLink
                   to="/login"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-gray-100 rounded-xl"
-                  @click="logout"
+                  @click="logoutAsync"
                 >
                   <i class="pi pi-sign-out mr-2"></i>
                   Sign out
@@ -66,6 +66,7 @@
   const emit = defineEmits(['toggleSidebar']);
 
   const appStore = useAppStore();
+  const { logoutAsync } = useAuthService();
 
   // User menu toggle
   const showUserMenu = ref(false);
@@ -86,10 +87,6 @@
   onBeforeUnmount(() => {
     window.removeEventListener('click', closeUserMenu);
   });
-
-  const logout = () => {
-    localStorage.removeItem('accessToken');
-  };
 
   // Sidebar and logo toggle logic
   const showLogo = ref(true);

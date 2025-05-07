@@ -30,8 +30,13 @@ export const useRequestService = () => {
     response => response,
     error => {
       const errorMessage = error?.response?.data?.message || error?.message || 'An error occurred';
+      const requestUrl = error?.config?.url || '';
 
-      toast.add({ severity: 'error', summary: 'Error', detail: errorMessage, life: 3000 });
+      // Do not show toast if the error is from the /auth/logout endpoint
+      if (!requestUrl.endsWith('/auth/logout')) {
+        toast.add({ severity: 'error', summary: 'Error', detail: errorMessage, life: 3000 });
+      }
+
       return Promise.reject(error);
     }
   );
@@ -54,7 +59,7 @@ export const useRequestService = () => {
     }
   };
 
-  const httpPostAsync = async (url: string, data?: string): Promise<AxiosResponse | null> => {
+  const httpPostAsync = async (url: string, data?: any): Promise<AxiosResponse | null> => {
     try {
       const resp = await axiosInstance.post(url, data);
       return resp;

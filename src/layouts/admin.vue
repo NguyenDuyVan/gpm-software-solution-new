@@ -6,7 +6,7 @@
     <div class="flex w-screen h-[calc(100vh_-_96px)]">
       <div class="flex w-full">
         <CustomTransition>
-          <SidebarMenu v-show="showSidebar" />
+          <SidebarMenu v-show="showSidebar" @toggle-sidebar="toggleSidebar" />
         </CustomTransition>
 
         <!-- Page Content -->
@@ -17,7 +17,7 @@
             v-if="items.length > 0"
             :home="home"
             :model="items"
-            class="bg-unset z-50 sticky top-0 w-fit shrink-0 rounded-2xl shadow bg-white dark:bg-gray-800"
+            class="bg-unset z-30 sticky top-0 w-fit shrink-0 rounded-2xl shadow bg-white dark:bg-gray-800"
             pt:root="py-1.5 px-4"
           >
             <template #item="{ item, props }">
@@ -84,12 +84,16 @@
     }
   });
 
-  const showSidebar = ref(true);
+  const showSidebar = ref(false);
   const toggleSidebar = () => {
     showSidebar.value = !showSidebar.value;
   };
 
-  watch(isMobile, newVal => {
-    showSidebar.value = !newVal;
+  watch(isMobile, () => {
+    showSidebar.value = !isMobile.value;
+  });
+
+  onMounted(() => {
+    showSidebar.value = !isMobile.value;
   });
 </script>

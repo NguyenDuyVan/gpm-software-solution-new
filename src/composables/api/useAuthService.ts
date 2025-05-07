@@ -57,8 +57,8 @@ export const useAuthService = () => {
       }),
     };
 
-    const response = await axios.post(url, obj);
-    return response.data;
+    const response = await httpPostAsync(url, obj);
+    return response?.data;
   };
 
   const verifyTokenAsync = async (): Promise<AuthResponse> => {

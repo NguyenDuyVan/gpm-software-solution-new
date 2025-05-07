@@ -294,7 +294,7 @@
     "pass": "Password",
     "remember": "Remember me",
     "forgot": "Forgot Password?",
-    "submit": "Đăng nhập",
+    "submit": "Sign in",
     "re_signup": "Don’t have an account?",
     "sign_up": "Sign Up",
     "email_required": "Please enter email",
@@ -303,8 +303,8 @@
   "sign_up": {
     "title": "Sign up",
     "content": "Welcome back! Please enter your detail",
-    "pass": "password",
-    "repassword": "Re enter password",
+    "pass": "Password",
+    "repassword": "Re-enter password",
     "full_name": "Full name",
     "fb_name": "Facebook name",
     "fb_link": "Facebook profile URL",
@@ -314,7 +314,8 @@
     "sign_in": "Sign In",
     "email_required": "Email is not valid",
     "pass_invalid": "Password must be at least 6 characters",
-    "repass_invalid": "Re-enter password does not match"
+    "repass_invalid": "Re-enter password does not match",
+    "full_name_required": "Full name is required"
   },
   "forgot": {
     "title": "Forgot password",

@@ -47,7 +47,7 @@
 <script setup lang="ts">
   definePageMeta({
     layout: 'admin',
-    middleware: undefined,
+    middleware: 'admin',
   });
 
   const customerService = useCustomerService();

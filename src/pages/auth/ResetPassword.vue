@@ -75,6 +75,7 @@
 </template>
 
 <script setup lang="ts">
+  import type { FormSubmitEvent } from '@primevue/forms/form';
   import { zodResolver } from '@primevue/forms/resolvers/zod';
   import { z } from 'zod';
 
@@ -111,7 +112,7 @@
 
     isSubmitting.value = true;
     const resp = await resetPasswordAsync(email.value, password.value, token.value);
-    message.value = resp.message;
+    message.value = resp.message || '';
 
     if (resp.success === true) {
       messageColor.value = '#0080C0';

@@ -326,5 +326,14 @@
     "remember": "Đã nhớ mật khẩu",
     "sign_in": "Đăng nhập",
     "email_required": "Vui lòng nhập email"
+  },
+  "reset_password": {
+    "title": "Đặt lại mật khẩu",
+    "pass": "Mật khẩu",
+    "repassword": "Nhập lại mật khẩu",
+    "submit": "Đặt lại mật khẩu",
+    "repassword_required": "Vui lòng nhập lại mật khẩu.",
+    "repass_invalid": "2 mật khẩu không trùng nhau",
+    "auto_redirect": "Tự động chuyển hướng đến trang đăng nhập sau {i} giây"
   }
 }

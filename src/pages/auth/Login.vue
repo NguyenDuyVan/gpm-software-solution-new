@@ -111,6 +111,7 @@
   definePageMeta({
     layout: 'auth',
     path: '/login',
+    middleware: 'auth',
   });
 
   useHead({

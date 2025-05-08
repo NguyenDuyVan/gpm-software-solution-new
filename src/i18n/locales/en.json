@@ -323,5 +323,14 @@
     "remember": "Remember your password?",
     "sign_in": "Login here",
     "email_required": "Please enter email"
+  },
+  "reset_password": {
+    "title": "Reset password",
+    "pass": "Password",
+    "repassword": "Re-enter password",
+    "submit": "Reset password",
+    "repassword_required": "Re-enter password is required.",
+    "repass_invalid": "Re-enter password does not match",
+    "auto_redirect": " Auto redirect to login page at {i} seconds"
   }
 }

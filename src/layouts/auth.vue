@@ -23,7 +23,7 @@
             type="submit"
             :label="$t('sign_up.sign_in')"
             class="!rounded-xl font-semibold shadow-xl shadow-primary-300 dark:shadow-primary-900"
-            @click="navigateTo('/register')"
+            @click="navigateTo('/login')"
           />
         </div>
       </div>

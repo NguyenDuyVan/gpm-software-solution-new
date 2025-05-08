@@ -1,7 +1,7 @@
 <!-- pages/admin/index.vue -->
 <template>
   <div class="overflow-x-hidden">
-    <div class="h-screen w-screen flex flex-col bg-gray-100">
+    <div class="h-screen w-screen flex flex-col bg-gray-100 dark:bg-gray-800">
       <div
         class="flex justify-between items-center p-8 backdrop-blur-md sticky top-0 z-30 md:bg-transparent"
       >
@@ -13,7 +13,7 @@
           <Button
             type="submit"
             :label="$t('login.sign_up')"
-            class="!rounded-xl font-semibold shadow-xl shadow-primary-300"
+            class="!rounded-xl font-semibold shadow-xl shadow-primary-300 dark:shadow-primary-900"
             @click="navigateTo('/register')"
           />
         </div>
@@ -22,7 +22,7 @@
           <Button
             type="submit"
             :label="$t('sign_up.sign_in')"
-            class="!rounded-xl font-semibold shadow-xl shadow-primary-300"
+            class="!rounded-xl font-semibold shadow-xl shadow-primary-300 dark:shadow-primary-900"
             @click="navigateTo('/register')"
           />
         </div>
@@ -30,7 +30,7 @@
 
       <div class="my-auto flex-1 relative flex items-start">
         <div
-          class="clip-wave absolute z-10 bottom-0 h-full w-full bg-gradient-to-t from-purple-500 to-blue-500"
+          class="clip-wave absolute z-10 bottom-0 h-full w-full bg-gradient-to-t from-purple-500 to-blue-500 dark:from-purple-800 dark:to-blue-800"
           :style="{
             'clip-path': 'ellipse(67% 33% at 51% 87%)',
           }"

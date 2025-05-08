@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-2xl w-full mx-auto my-auto p-4 md:p-8 rounded-2xl border border-gray-200 shadow-2xl bg-white"
+    class="max-w-2xl w-full mx-auto my-auto p-4 md:p-8 rounded-2xl border border-gray-200 shadow-2xl bg-white dark:bg-gray-800 dark:border-gray-700"
   >
     <div class="w-full">
       <div class="text-center mb-4">

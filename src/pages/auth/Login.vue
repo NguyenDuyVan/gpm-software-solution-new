@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-lg w-full mt-0 md:mt-8 lg:mt12 mx-auto my-auto p-4 md:p-8 rounded-2xl border border-gray-200 shadow-2xl bg-white"
+    class="max-w-lg w-full mt-0 md:mt-8 lg:mt12 mx-auto my-auto p-4 md:p-8 rounded-2xl border border-gray-200 shadow-2xl bg-white dark:bg-gray-800 dark:border-gray-700"
   >
     <div class="mx-auto mb-4 w-full text-center">
       <h3 class="font-bold">{{ $t('login.title') }}</h3>
@@ -39,9 +39,9 @@
           <div class="flex items-center justify-between">
             <label for="password" class="block text-sm/6 font-medium">{{ $t('login.pass') }}</label>
             <div class="text-sm">
-              <a href="#" class="font-semibold text-primary hover:text-primary-600">
-                Forgot password?</a
-              >
+              <NuxtLink to="/forgot-password" class="text-primary-600 font-medium text-sm">
+                {{ $t('login.forgot') }}
+              </NuxtLink>
             </div>
           </div>
           <div class="mt-2">
@@ -71,13 +71,10 @@
         <div class="flex justify-between items-center mb-2">
           <div class="flex items-center">
             <Checkbox v-model="isRememberLogin" input-id="remember" binary class="mr-2" />
-            <label for="remember" class="text-gray-700 text-sm">
+            <label for="remember" class="text-sm">
               {{ $t('login.remember') }}
             </label>
           </div>
-          <NuxtLink to="/forgot-password" class="text-primary-600 font-medium text-sm">
-            {{ $t('login.forgot') }}
-          </NuxtLink>
         </div>
 
         <Button

@@ -2,7 +2,7 @@
   <header
     class="bg-white dark:bg-gray-800 z-20 flex items-center justify-between dark:shadow-lg shadow-md relative"
   >
-    <CustomTransition>
+    <CustomTransition name="slide-to-hide">
       <div v-show="showLogo || isMobile" class="h-16 w-64 px-8 py-4 order-2 md:order-1">
         <img src="@/assets/imgs/logo.png" alt="logo" />
       </div>

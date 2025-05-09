@@ -1,12 +1,12 @@
 <!-- pages/admin/index.vue -->
 <template>
-  <div>
+  <div class="bg-gray-100 dark:bg-gray-900">
     <Header @toggle-sidebar="toggleSidebar" />
 
     <div class="flex w-screen h-[calc(100vh_-_96px)]">
       <div class="flex w-full">
-        <CustomTransition>
-          <SidebarMenu v-show="showSidebar" @toggle-sidebar="toggleSidebar" />
+        <CustomTransition name="slide-to-hide">
+          <SidebarMenu v-if="showSidebar" @toggle-sidebar="toggleSidebar" />
         </CustomTransition>
 
         <!-- Page Content -->

@@ -10,9 +10,24 @@
   </div>
 </template>
 <script setup lang="ts">
-  const appStore = useAppStore();
+  import { useGetLocationInfo } from './composables/api/useGetLocationInfo';
+  import type { Locale } from './types';
 
-  onMounted(() => {
+  const appStore = useAppStore();
+  const { getLocationInfo } = useGetLocationInfo();
+  const { setLocale } = useI18n();
+
+  onBeforeMount(async () => {
+    let lang = localStorage.getItem('lang');
+    if (!lang) {
+      const locationInfo = await getLocationInfo();
+      lang = locationInfo?.countryCode?.toLowerCase() === 'vn' ? 'vi' : 'en';
+      localStorage.setItem('lang', lang);
+    }
+    setLocale(lang as Locale);
+  });
+
+  onMounted(async () => {
     appStore.listenResize();
   });
 

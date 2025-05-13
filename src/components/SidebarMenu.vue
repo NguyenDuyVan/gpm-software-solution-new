@@ -4,7 +4,7 @@
   >
     <nav class="flex-1">
       <ul class="space-y-2 px-3">
-        <li v-for="item in MENU_CONFIG" :key="item.path" @click="onClickMenu">
+        <li v-for="item in menuConfig" :key="item.path" @click="onClickMenu">
           <NuxtLink
             :to="item.path"
             class="flex text-gray-800 dark:text-white items-center p-3 rounded-2xl transition-colors border border-transparent hover:border-primary-300"
@@ -26,15 +26,21 @@
 </template>
 <script setup lang="ts">
   import { MENU_CONFIG } from '@/constants/menu';
+  import { useI18n } from 'vue-i18n';
 
   const emit = defineEmits(['toggleSidebar']);
 
   const appStore = useAppStore();
   const isMobile = computed(() => appStore.isMobile);
+  const { locale } = useI18n();
 
   const onClickMenu = () => {
     if (isMobile.value) {
       emit('toggleSidebar');
     }
   };
+
+  const menuConfig = computed(() =>
+    locale.value === 'en' ? MENU_CONFIG.filter(item => item.path !== '/affiliate') : MENU_CONFIG
+  );
 </script>

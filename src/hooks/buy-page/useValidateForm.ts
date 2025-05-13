@@ -2,12 +2,11 @@ import { reactive, ref, watch } from 'vue';
 import { z } from 'zod';
 import type { OrderObject, CustomerObject } from '@/types/buy';
 
-export function useValidateForm(
-  orderObj: OrderObject,
-  customerObj: CustomerObject,
-  liveInVietnam: Ref<boolean>
-) {
+export function useValidateForm(orderObj: OrderObject, customerObj: CustomerObject) {
+  const { locale } = useI18n();
+
   const isSubmmited = ref<boolean>(false);
+  const liveInVietnam = computed(() => locale.value === 'vi');
 
   // Error containers
   const orderErrors = reactive<{ [key: string]: string }>({});

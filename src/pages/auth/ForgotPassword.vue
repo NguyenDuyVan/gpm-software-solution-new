@@ -50,7 +50,7 @@
           type="submit"
           :label="$t('login.submit')"
           class="flex w-full justify-center !rounded-xl font-semibold"
-          :loading="isSubmit"
+          :loading="isSubmitting"
           :disabled="isSubmitting || !email"
         />
 
@@ -102,7 +102,7 @@
     isSubmitting.value = true;
 
     const resp = await forgotPasswordAsync(email.value);
-    message.value = resp.message;
+    message.value = resp.message || '';
     messageSeverity.value = resp.success === true ? 'info' : 'error';
     isSubmitting.value = false;
   };

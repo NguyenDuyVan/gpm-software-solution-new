@@ -257,12 +257,13 @@
 
   definePageMeta({
     layout: 'admin',
-    middleware: undefined,
+    middleware: 'admin',
   });
 
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const toast = useToast();
   const { getDashboardData } = useCustomerService();
+  const router = useRouter();
 
   type AffiliateData = {
     created_at: string;
@@ -271,6 +272,16 @@
     affiliate_point: number;
     // Add other fields if necessary
   };
+
+  watch(
+    locale,
+    value => {
+      if (value === 'en') {
+        router.push('/');
+      }
+    },
+    { immediate: true }
+  );
 
   const dashboardObj = reactive<{
     user: {

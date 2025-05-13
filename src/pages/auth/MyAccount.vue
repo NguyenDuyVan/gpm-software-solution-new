@@ -87,12 +87,6 @@
                 }}</label>
                 <InputText id="phoneNum" v-model="userObj.phone_number" class="w-full" />
               </div>
-              <div class="col-span-2 flex items-center mt-2">
-                <Checkbox v-model="liveInVietnam" input-id="liveInVietnam" :binary="true" />
-                <label for="liveInVietnam" class="ml-2">{{
-                  $t('my_account.account_infor.live_in_vi')
-                }}</label>
-              </div>
               <div v-if="liveInVietnam">
                 <label for="province" class="block font-medium mb-1"
                   >{{ $t('my_account.account_infor.province.label')
@@ -156,7 +150,7 @@
             </div>
           </div>
 
-          <div>
+          <div v-if="liveInVietnam">
             <h5 class="font-bold mb-2">{{ $t('my_account.affiliate_infor.title') }}</h5>
             <hr class="my-2" />
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -232,7 +226,7 @@
   const { getCurrentUserAsync, updateCurrentUserAsync } = useAuthService();
   const { getAddressDataAsync } = useAddressProvider();
 
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const toast = useToast();
 
   const userObj = ref<any>({
@@ -254,7 +248,7 @@
   const provinceList = ref<string[]>([]);
   const districtList = ref<string[]>([]);
   const wardList = ref<string[]>([]);
-  const liveInVietnam = ref(true);
+  const liveInVietnam = computed(() => locale.value === 'vi');
   const bankOptions = [
     { name: 'ACB', value: 'ACB' },
     { name: 'MBBANK', value: 'MBBANK' },
@@ -295,11 +289,8 @@
         userObj.value.district = addressParts[2].trim();
         districtChanged();
         userObj.value.ward = addressParts[1].trim();
-        liveInVietnam.value = true;
       } else {
         userObj.value.addressText = userObj.value.address;
-
-        liveInVietnam.value = localStorage.getItem('lang') === 'vi';
       }
     }
   });

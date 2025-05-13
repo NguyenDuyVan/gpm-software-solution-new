@@ -1,11 +1,11 @@
 import { debounce } from '@/helpers';
 import type { OrderObject, UIData, Project, ApiResponse } from '@/types/buy';
 
-export function useSoftwareData(orderObj: OrderObject, isGlobal: Ref<boolean>) {
+export function useSoftwareData(orderObj: OrderObject) {
   const db = useCustomerService();
   const isLoadingAffInfo = ref<boolean>(false);
   const affMessage = ref<string>('');
-  const isGlobalUser = computed(() => isGlobal.value);
+  const { locale } = useI18n();
 
   const softwareData = reactive<UIData>({
     projectModules: [],
@@ -66,13 +66,13 @@ export function useSoftwareData(orderObj: OrderObject, isGlobal: Ref<boolean>) {
   };
 
   const formatVnPrice = (price: number): string => {
-    if (!isGlobalUser.value) return formatPrice(price * 1000);
+    if (locale.value === 'vi') return formatPrice(price * 1000);
     return price + ' USD';
   };
 
   // Get price based on location
   const getPriceByLocation = (obj: { price: number; global_price: number }): string => {
-    if (isGlobalUser.value) return obj.global_price.toString();
+    if (locale.value === 'en') return obj.global_price.toString();
     return obj.price.toString();
   };
 

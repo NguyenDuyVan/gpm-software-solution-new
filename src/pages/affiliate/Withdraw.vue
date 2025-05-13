@@ -145,14 +145,14 @@
 <script setup lang="ts">
   definePageMeta({
     layout: 'admin',
-    middleware: undefined,
+    middleware: 'admin',
     path: '/affiliate-withdraw',
     name: 'affiliate-withdraw',
   });
 
   const { createAffiliateOrderAsync, getAffiliateOrdersAsync } = useCustomerService();
   const { getCurrentUserAsync } = useAuthService();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const router = useRouter();
   const toast = useToast();
 
@@ -162,6 +162,16 @@
   const inLoading = ref<boolean>(false);
   const isShowConfirmPasswordBox = ref<boolean>(false);
   const confirmPasswordBox = ref();
+
+  watch(
+    locale,
+    value => {
+      if (value === 'en') {
+        router.push('/');
+      }
+    },
+    { immediate: true }
+  );
 
   onMounted(async () => {
     document.title = 'Affiliate withdraw| User site';

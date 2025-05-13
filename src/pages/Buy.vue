@@ -3,12 +3,6 @@
     <template #title>
       <div class="flex justify-between items-center">
         <h4 class="text-primary mb-2">{{ $t('buy_page.software_info.title') }}</h4>
-        <div v-show="!isGlobalUser" class="flex items-center">
-          <label for="liveInVietnam" class="mr-2 text-sm">{{
-            $t('buy_page.customer_info.live_in_vi')
-          }}</label>
-          <Checkbox v-model="liveInVietnam" input-id="liveInVietnam" :binary="true" />
-        </div>
       </div>
     </template>
     <template #content>
@@ -318,7 +312,7 @@
   });
 
   // Setup component
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   useHead({
     title: computed(() => t('buy_page.document_title')),
   });
@@ -326,8 +320,8 @@
   // References
   const formRef = ref<any>(null);
   const displayNameInput = ref<HTMLInputElement | null>(null);
-  const isGlobalUser = ref<boolean>(false);
   const isLoading = ref<boolean>(false);
+  const liveInVietnam = computed(() => locale.value === 'vi');
 
   // Form data
   const orderObj = reactive<OrderObject>({
@@ -360,13 +354,12 @@
     caculatePriceAsync,
     affCodeChangedEvent,
     softwareData,
-  } = useSoftwareData(orderObj, isGlobalUser);
+  } = useSoftwareData(orderObj);
 
   const { loadCustomerData } = useCustomerInfo(customerObj);
 
   // Initialize hooks with shared state
   const {
-    liveInVietnam,
     provinceListMap,
     districtListMap,
     wardListMap,
@@ -379,8 +372,7 @@
   const { createOrder } = usePaymentProcess(orderObj);
   const { orderErrors, customerErrors, isSubmmited, validateForm } = useValidateForm(
     orderObj,
-    customerObj,
-    liveInVietnam
+    customerObj
   );
   const { submitAsync, isLoadingSubmit } = useSubmitForm(
     softwareData,
@@ -405,8 +397,6 @@
 
   onMounted(async () => {
     isLoading.value = true;
-    isGlobalUser.value = localStorage.getItem('lang') === 'en';
-    liveInVietnam.value = !isGlobalUser.value;
 
     const storedRef = localStorage.getItem('ref');
     if (storedRef) {

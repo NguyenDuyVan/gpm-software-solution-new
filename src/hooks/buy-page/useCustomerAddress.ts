@@ -6,7 +6,7 @@ export function useCustomerAddress(customerObj: CustomerObject) {
   const provinceList = ref<string[]>([]);
   const districtList = ref<string[]>([]);
   const wardList = ref<string[]>([]);
-  const liveInVietnam = ref<boolean>(false);
+  const { locale } = useI18n();
 
   // Computed properties for UI
   const provinceListMap = computed(() => {
@@ -53,7 +53,7 @@ export function useCustomerAddress(customerObj: CustomerObject) {
 
   // Format address
   const formatFullAddress = (): string => {
-    if (!liveInVietnam.value) return customerObj.addressText || '';
+    if (locale.value === 'en') return customerObj.addressText || '';
 
     return (
       (customerObj.addressText?.replace(',', '') || '') +
@@ -80,7 +80,6 @@ export function useCustomerAddress(customerObj: CustomerObject) {
       districtChanged();
 
       customerObj.ward = addressParts[1].trim();
-      liveInVietnam.value = true;
     } else {
       customerObj.addressText = address;
     }
@@ -99,7 +98,6 @@ export function useCustomerAddress(customerObj: CustomerObject) {
   };
 
   return {
-    liveInVietnam,
     provinceListMap,
     districtListMap,
     wardListMap,

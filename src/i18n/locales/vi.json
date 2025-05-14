@@ -55,6 +55,7 @@
       "buy_more_devices": "Mua thêm thiết bị",
       "total": "Tổng",
       "gen_qr": "Sinh QR thanh toán",
+      "create_qr": "Tạo mã QR",
       "content": "Hệ thống sẽ tự động xử lý sau 1 đến 3 phút kể từ khi chuyển khoản ! Sau đó vui lòng F5 lại trang để kiểm tra"
     },
     "confirm": {

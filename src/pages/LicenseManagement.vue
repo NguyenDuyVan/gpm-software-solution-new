@@ -133,7 +133,7 @@
             </h4>
           </div>
           <Button
-            label="Tạo mã QR"
+            :label="$t('license.modal_upgrade.create_qr')"
             icon="pi pi-qrcode"
             class="p-button-success w-full mt-4"
             :loading="upgradeLicenseObj.isCalculating"
@@ -243,7 +243,7 @@
   });
 
   const upgradeLicenseObj = ref({
-    transferImage: '/assets/img/loading_img.gif',
+    transferImage: '/_nuxt/assets/imgs/loading_img.gif',
     bankName: 'MB Bank',
     bankAccountNumber: '',
     bankAccountName: '',
@@ -421,7 +421,7 @@
         life: 2000,
       });
       upgradeLicenseObj.value.upDevices = 0;
-      upgradeLicenseObj.value.transferImage = '/assets/img/loading_img.gif';
+      upgradeLicenseObj.value.transferImage = '/_nuxt/assets/imgs/loading_img.gif';
       return;
     }
 
@@ -451,6 +451,8 @@
         upgradeLicenseObj.value.bankName = transferGetResult.data.bank_name;
         upgradeLicenseObj.value.isCalculating = false;
       }
+    } else {
+      upgradeLicenseObj.value.isCalculating = false;
     }
   }
 

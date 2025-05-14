@@ -55,6 +55,7 @@
       "buy_more_devices": "Buy more devices",
       "total": "Total",
       "gen_qr": "Generate QR payment",
+      "create_qr": "Create QR code",
       "content": "The system will automatically process after 1 to 3 minutes from the transfer! Then please F5 the page to check."
     },
     "confirm": {

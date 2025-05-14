@@ -147,17 +147,6 @@
               <h3 class="text-lg font-medium">
                 {{ $t('affiliate_page.withdraw') }}
               </h3>
-              <Button
-                :label="
-                  showHistory
-                    ? $t('affiliate_page.hide_history')
-                    : $t('affiliate_page.show_history')
-                "
-                icon="pi pi-history"
-                text
-                class="px-3 py-1.5 text-sm"
-                @click="showHistory = !showHistory"
-              />
             </div>
           </div>
           <div class="p-6">
@@ -181,40 +170,12 @@
             </div>
 
             <Button
-              :disabled="!dashboardObj.user.affiliate_point"
               :label="$t('affiliate_page.withdraw')"
               icon="pi pi-arrow-right"
               class="w-full py-2.5 px-4 font-medium flex items-center justify-center"
               :severity="dashboardObj.user.affiliate_point >= 500 ? 'help' : 'secondary'"
               @click="() => $router.push('/affiliate-withdraw')"
             />
-
-            <div v-if="showHistory" class="mt-6">
-              <h4 class="text-sm font-medium mb-3">{{ $t('affiliate_page.withdraw_history') }}</h4>
-              <div v-if="withdrawalHistory.length" class="space-y-3">
-                <div
-                  v-for="item in withdrawalHistory"
-                  :key="item.id"
-                  class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg"
-                >
-                  <div>
-                    <p class="text-sm font-medium text-slate-800">$150</p>
-                    <p class="text-xs">{{ formatDateTimeString(item.date) }}</p>
-                  </div>
-                  <Tag
-                    :value="
-                      item.status === 'completed'
-                        ? $t('affiliate_withdraw.table.status_completed')
-                        : $t('affiliate_withdraw.table.status_processing')
-                    "
-                    :severity="item.status === 'completed' ? 'success' : 'warning'"
-                  />
-                </div>
-              </div>
-              <p v-else class="text-sm text-center py-4">
-                {{ $t('affiliate_page.no_withdraw_history') }}
-              </p>
-            </div>
           </div>
         </div>
 
@@ -338,21 +299,4 @@
   };
 
   const dateBodyTemplate = (row: any) => formatDateTimeString(row.created_at);
-
-  const showHistory = ref(false);
-
-  const withdrawalHistory = [
-    {
-      id: 1,
-      date: '2025-04-01T14:30:00',
-      amount: 150,
-      status: 'completed',
-    },
-    {
-      id: 2,
-      date: '2025-03-15T09:45:00',
-      amount: 200,
-      status: 'completed',
-    },
-  ];
 </script>

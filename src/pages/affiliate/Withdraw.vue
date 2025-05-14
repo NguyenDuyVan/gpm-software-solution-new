@@ -8,7 +8,7 @@
           <i class="pi pi-dollar animate-shake"></i>
           <p>Điểm khả dụng</p>
         </div>
-        <h3>{{ userObj.affiliate_point }}</h3>
+        <h3>{{ userObj.affiliate_point || 0 }}</h3>
       </div>
       <div
         class="p-4 space-y-2 flex-1 shadow-md bg-emerald-100 dark:bg-emerald-500 rounded-2xl text-emerald-700"
@@ -17,7 +17,7 @@
           <i class="pi pi-check-circle animate-bounce"></i>
           <p>Đã hoàn thành</p>
         </div>
-        <h3>100</h3>
+        <h3>{{ totalSuccessPoint }}</h3>
       </div>
       <div
         class="p-4 space-y-2 flex-1 shadow-md bg-amber-100 dark:bg-amber-500 rounded-2xl text-amber-700"
@@ -26,7 +26,7 @@
           <i class="pi pi-spinner-dotted animate-spin"></i>
           <p>Đang chờ xử lý</p>
         </div>
-        <h3>100</h3>
+        <h3>{{ totalPendingPoint }}</h3>
       </div>
     </div>
     <Card>
@@ -131,14 +131,7 @@
       </DataTable>
     </div>
 
-    <Dialog
-      v-model:visible="isShowConfirmPasswordBox"
-      modal
-      :closable="false"
-      header="Confirm Password"
-    >
-      <ConfirmPasswordBox ref="confirmPasswordBox" @confirm-event="confirmPasswordDoneEvent" />
-    </Dialog>
+    <ConfirmPasswordBox ref="confirmPasswordBox" @confirm-event="confirmPasswordDoneEvent" />
   </div>
 </template>
 
@@ -160,8 +153,21 @@
   const affOrderObjs = ref<any[]>([]);
   const userObj = ref<any>({});
   const inLoading = ref<boolean>(false);
-  const isShowConfirmPasswordBox = ref<boolean>(false);
   const confirmPasswordBox = ref();
+
+  const totalSuccessPoint = computed(() => {
+    return affOrderObjs.value.reduce(
+      (total, order) => (order.status === 'SUCCESS' ? total + order.withdraw_point : total),
+      0
+    );
+  });
+
+  const totalPendingPoint = computed(() => {
+    return affOrderObjs.value.reduce(
+      (total, order) => (order.status === 'PENDING' ? total + order.withdraw_point : total),
+      0
+    );
+  });
 
   watch(
     locale,
@@ -231,12 +237,12 @@
       });
       return;
     }
-    isShowConfirmPasswordBox.value = true;
-    // ConfirmPasswordBox should handle its own modal logic in Vue 3
+    confirmPasswordBox.value.setStateModal(true);
   }
 
   async function confirmPasswordDoneEvent(eventResult: boolean) {
-    isShowConfirmPasswordBox.value = false;
+    confirmPasswordBox.value.setStateModal(false);
+
     if (eventResult === true) {
       const result = await createAffiliateOrderAsync(withDrawPoint.value);
       if (result.success === true) {

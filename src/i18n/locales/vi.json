@@ -91,6 +91,8 @@
         "label": "Phần mềm",
         "placeholder": "-- Chọn phần mềm"
       },
+      "software_required": "Vui lòng chọn phần mềm",
+      "package_required": "Vui lòng chọn gói phần mềm",
       "package": "Gói phần mềm",
       "aff_code": "Mã giới thiệu nếu có",
       "total_money": "Tổng tiền",
@@ -102,6 +104,7 @@
       "title": "Thông tin khách hàng",
       "desc": "Vui lòng nhập đầy đủ thông tin cá nhân để chúng tôi có thể hỗ trợ và bảo hành một cách tốt nhất. Thông tin của bạn cũng sẽ được lưu cho các lần thanh toán sau, vì vậy bạn chỉ cần nhập một lần đầu tiên.",
       "user_name": "Họ và tên",
+      "user_name_required": "Vui lòng nhập họ tên",
       "phone": "Số điện thoại",
       "live_in_vi": "Tôi ở Việt Nam",
       "province": {
@@ -116,7 +119,11 @@
         "label": "Xã / phường",
         "placeholder": "-- Chọn xã phường"
       },
-      "address": "Địa chỉ"
+      "address": "Địa chỉ",
+      "address_required": "Vui lòng nhập địa chỉ.",
+      "province_required": "Vui lòng chọn tỉnh/thành phố.",
+      "district_required": "Vui lòng chọn huyện.",
+      "ward_required": "Vui lòng chọn xã/phường."
     },
     "tax": {
       "tax_code": "Mã số thuế",
@@ -179,7 +186,7 @@
     "account_withdraw": "Tài khoản nhận tiền:",
     "bank_info": "Chưa có thông tin về tài khoản của bạn",
     "infor_first": " Lệnh rút tiền sẽ được xử lý trong vòng <b>3-5 ngày làm việc</b> kể từ ngày đặt lệnh rút. Hãy đảm bảo bạn đã điền thông tin ngân hàng chính xác tại mục thông tin tài khoản, chúng tôi sẽ không chịu bất cứ trách nhiệm nào nếu thông tin của bạn không đúng!",
-    "info_second": "Sau khi đặt lệnh rút tiền thành công, vui lòng nhắn tin lên <a style='color:#0d6efd' href='https://facebook.com/giaiphapmmodotnet' target='_blank'>Fan page</a> xác nhận lần đầu để tránh các trường hợp đáng tiếc. Ví dụ như tài khoản của bạn bị hack và thay đổi thông tin chuyển khoản. Các thông tin như họ tên cần đúng với tên tài khoản ngân hàng của bạn.",
+    "info_second": "Sau khi đặt lệnh rút tiền thành công, vui lòng nhắn tin lên <a style='color:#0d6efd' href='https://facebook.com/giaiphapmmodotnet' target='_blank'>Fanpage</a> xác nhận lần đầu để tránh các trường hợp đáng tiếc. Ví dụ như tài khoản của bạn bị hack và thay đổi thông tin chuyển khoản. Các thông tin như họ tên cần đúng với tên tài khoản ngân hàng của bạn.",
     "table": {
       "time": "Thời gian đặt lệnh",
       "withdraw_point": "Số affiliate point",

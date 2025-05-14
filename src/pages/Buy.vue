@@ -35,9 +35,10 @@
             </div>
 
             <div class="form-group">
-              <label for="modules" class="block mb-2">{{
-                $t('buy_page.software_info.package')
-              }}</label>
+              <label for="modules" class="block mb-2"
+                >{{ $t('buy_page.software_info.package')
+                }}<span class="text-red-600">*</span></label
+              >
               <Select
                 v-model="orderObj.project_package_id"
                 :options="softwareData.projectPackages"
@@ -337,7 +338,7 @@
     province: null,
     district: null,
     ward: null,
-    addressText: null,
+    addressText: '',
     display_name: '',
     phone_number: '',
     tax_code: '',

@@ -31,17 +31,7 @@ export const useRequestService = () => {
   });
 
   axiosInstance.interceptors.response.use(
-    response => {
-      if (response.data?.success === false && response.data?.message) {
-        toast.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: response.data?.message,
-          life: 3000,
-        });
-      }
-      return response;
-    },
+    response => response,
     error => {
       const errorMessage = error?.response?.data?.message || error?.message || 'An error occurred';
       const requestUrl = error?.config?.url || '';

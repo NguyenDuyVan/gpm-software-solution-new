@@ -133,6 +133,7 @@
             </h4>
           </div>
           <Button
+            :disabled="!upgradeLicenseObj.upDevices"
             :label="$t('license.modal_upgrade.create_qr')"
             icon="pi pi-qrcode"
             class="p-button-success w-full mt-4"
@@ -452,6 +453,7 @@
         upgradeLicenseObj.value.isCalculating = false;
       }
     } else {
+      toast.add({ severity: 'error', summary: 'Error', detail: result.message, life: 2000 });
       upgradeLicenseObj.value.isCalculating = false;
     }
   }
@@ -471,4 +473,29 @@
     }
     return t('license.instruction');
   });
+
+  const onUpdatePriceUpgrade = () => {
+    const totalProductPrice =
+      upgradeLicenseObj.value.projectObj?.modules
+        ?.filter((item: any) => item.selected)
+        .reduce((acc: number, item: any) => acc + item.price, 0) || 0;
+
+    const upDevices = upgradeLicenseObj.value.upDevices;
+    upgradeLicenseObj.value.price = totalProductPrice * upDevices;
+  };
+
+  watch(
+    () => [
+      upgradeLicenseObj.value?.upDevices,
+      upgradeLicenseObj.value?.projectObj?.modules,
+      isShowUpgradeModal.value,
+    ],
+    // eslint-disable-next-line no-unused-vars
+    ([_, __, isShow]) => {
+      if (isShow) {
+        onUpdatePriceUpgrade();
+      }
+    },
+    { deep: true }
+  );
 </script>

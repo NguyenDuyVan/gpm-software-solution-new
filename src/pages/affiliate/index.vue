@@ -170,6 +170,7 @@
             </div>
 
             <Button
+              :disabled="!dashboardObj.user.affiliate_point"
               :label="$t('affiliate_page.withdraw')"
               icon="pi pi-arrow-right"
               class="w-full py-2.5 px-4 font-medium flex items-center justify-center"

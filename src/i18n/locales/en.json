@@ -91,6 +91,8 @@
         "label": "Software",
         "placeholder": "-- Select Software"
       },
+      "software_required": "Please select software",
+      "package_required": "Please select a package",
       "package": "Software package",
       "aff_code": "Referral code (if any)",
       "total_money": "Total money",
@@ -102,6 +104,7 @@
       "title": "Customer information",
       "desc": "Please enter complete personal information so that we can provide the best support and warranty. Your information will also be saved for future payments, so you only need to enter it once.",
       "user_name": "Full name",
+      "user_name_required": "Please enter your full name",
       "phone": "Phone number",
       "live_in_vi": "I am in Vietnam",
       "province": {
@@ -116,7 +119,11 @@
         "label": "Ward / Commune",
         "placeholder": "-- Select ward/commune"
       },
-      "address": "Address"
+      "address": "Address",
+      "address_required": "Address is required.",
+      "province_required": "Province is required.",
+      "district_required": "District is required.",
+      "ward_required": "Ward is required."
     },
     "tax": {
       "tax_code": "Tax code",
@@ -179,7 +186,7 @@
     "account_withdraw": "Receiving account:",
     "bank_info": "No account information available",
     "infor_first": "The withdrawal request will be processed within <b>3-5 business days</b> from the date of the request. Please ensure that you have entered your bank information accurately. We will not be responsible for any issues caused by incorrect information!",
-    "info_second": "After successfully placing a withdrawal request, please send a message to our <a style='color:#0d6efd' href='https://facebook.com/giaiphapmmodotnet' target='_blank'>Fan Page</a> for initial confirmation to avoid unfortunate incidents, such as your account being hacked and the payment information being changed. Information such as your name should match the name on your bank account.",
+    "info_second": "After successfully placing a withdrawal request, please send a message to our <a style='color:#0d6efd' href='https://facebook.com/giaiphapmmodotnet' target='_blank'>Fanpage</a> for initial confirmation to avoid unfortunate incidents, such as your account being hacked and the payment information being changed. Information such as your name should match the name on your bank account.",
     "table": {
       "time": "Request time",
       "withdraw_point": "Affiliate points",

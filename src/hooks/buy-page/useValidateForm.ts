@@ -3,7 +3,7 @@ import { z } from 'zod';
 import type { OrderObject, CustomerObject } from '@/types/buy';
 
 export function useValidateForm(orderObj: OrderObject, customerObj: CustomerObject) {
-  const { locale } = useI18n();
+  const { t, locale } = useI18n();
 
   const isSubmmited = ref<boolean>(false);
   const liveInVietnam = computed(() => locale.value === 'vi');
@@ -14,42 +14,38 @@ export function useValidateForm(orderObj: OrderObject, customerObj: CustomerObje
 
   // Order validation schema
   const orderSchema = z.object({
-    project_id: z.any().refine(val => val !== null, { message: 'Please select a software.' }),
+    project_id: z
+      .any()
+      .refine(val => val !== null, { message: t('buy_page.software_info.software_required') }),
     project_package_id: z
       .any()
-      .refine(val => val !== null, { message: 'Please select a package.' }),
+      .refine(val => val !== null, { message: t('buy_page.software_info.package_required') }),
   });
 
   // Customer validation schema
   const customerSchema = z.object({
-    display_name: z.string().min(1, { message: 'Name is required.' }),
-    addressText: z.string().refine(
-      val => {
-        if (liveInVietnam.value) return true;
-        return !!val && val.length > 0;
-      },
-      { message: 'Address is required.' }
-    ),
+    display_name: z.string().min(1, { message: t('buy_page.customer_info.name_required') }),
+    addressText: z.string().min(1, { message: t('buy_page.customer_info.address_required') }),
     province: z.any().refine(
       val => {
         if (!liveInVietnam.value) return true;
         return !!val;
       },
-      { message: 'Province is required.' }
+      { message: t('buy_page.customer_info.province_required') }
     ),
     district: z.any().refine(
       val => {
         if (!liveInVietnam.value) return true;
         return !!val;
       },
-      { message: 'District is required.' }
+      { message: t('buy_page.customer_info.district_required') }
     ),
     ward: z.any().refine(
       val => {
         if (!liveInVietnam.value) return true;
         return !!val;
       },
-      { message: 'Ward is required.' }
+      { message: t('buy_page.customer_info.ward_required') }
     ),
   });
 

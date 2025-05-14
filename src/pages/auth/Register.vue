@@ -177,9 +177,7 @@
           email: z.string().email({ message: t('sign_up.email_required') }),
           password: z.string().min(6, { message: t('sign_up.pass_invalid') }),
           repassword: z.string().min(6, { message: t('sign_up.pass_invalid') }),
-          displayName: z
-            .string()
-            .min(1, { message: t('sign_up.full_name') + ' ' + t('common.no_data') }),
+          displayName: z.string().min(1, { message: t('sign_up.full_name_required') }),
         })
         .refine(data => data.password === data.repassword, {
           message: t('sign_up.repass_invalid'),

@@ -45,6 +45,7 @@
     localStorage.setItem('lang', code);
     showLangPopover.value = false;
     languagePopoverRef.value?.hide();
+    window.location.reload();
   };
 
   const localeOptions = computed(() =>

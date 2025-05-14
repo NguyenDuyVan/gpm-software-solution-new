@@ -113,7 +113,7 @@
         email: z
           .string()
           .min(1, { message: t('login.email_required') })
-          .email({ message: 'Invalid email address.' }),
+          .email({ message: t('login.email_invalid') }),
       })
     )
   );

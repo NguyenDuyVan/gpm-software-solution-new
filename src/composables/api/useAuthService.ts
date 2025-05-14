@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useRequestService } from './useRequestService';
 import { TOKEN_NAME } from './constants';

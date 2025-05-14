@@ -1,13 +1,12 @@
 export default defineNuxtRouteMiddleware(async to => {
   const { verifyTokenAsync } = useAuthService();
-
+  let lang = 'en';
   if (typeof window !== 'undefined') {
-    const lang = localStorage.getItem('lang') || 'en';
     // Check if locale is 'en' and route contains 'affiliate'
-    if (lang === 'en' && to.fullPath.includes('affiliate')) {
-      return navigateTo('/');
-    }
+    lang = localStorage.getItem('lang') || 'en';
   }
+
+  if (to.query.lang !== lang) return navigateTo({ path: to.path, query: { ...to.query, lang } });
 
   // Store query params in localStorage
   if (to.query.f) {
@@ -26,9 +25,12 @@ export default defineNuxtRouteMiddleware(async to => {
   if (to.meta.requiresAuth) {
     const verifyTokenResult = await verifyTokenAsync();
     if (verifyTokenResult.success === true || (to.name && to.name.toString().includes('home'))) {
+      if (lang === 'en' && to.fullPath.includes('affiliate')) {
+        return navigateTo(`/`);
+      }
       return;
     } else {
-      return navigateTo('/login');
+      return navigateTo(`/login?lang=${lang}`);
     }
   }
 });

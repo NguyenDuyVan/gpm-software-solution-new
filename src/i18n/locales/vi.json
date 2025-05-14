@@ -301,7 +301,8 @@
     "re_signup": "Bạn chưa có tài khoản?",
     "sign_up": "Đăng ký",
     "email_required": "Vui lòng nhập email",
-    "pass_invalid": "Mật khẩu phải có độ dài ít nhất 6 ký tự"
+    "pass_invalid": "Mật khẩu phải có độ dài ít nhất 6 ký tự",
+    "email_invalid": "Email không hợp lệ"
   },
   "sign_up": {
     "title": "Đăng ký",
@@ -318,7 +319,7 @@
     "email_required": "Vui lòng nhập email hợp lệ",
     "pass_invalid": "Mật khẩu phải có độ dài ít nhất 6 ký tự",
     "repass_invalid": "2 mật khẩu không trùng nhau",
-    "full_name_required": "Họ tên là bắt buộc"
+    "full_name_required": "Vui lòng nhập họ tên"
   },
   "forgot": {
     "title": "Quên mật khẩu",

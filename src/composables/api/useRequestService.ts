@@ -7,6 +7,10 @@ export const useRequestService = () => {
   const config = useRuntimeConfig();
   const apiBaseUrl = config.public.apiBaseUrl;
   const toast = useToast();
+  let lang = 'en';
+  if (typeof window !== 'undefined') {
+    lang = localStorage.getItem('lang') || 'en';
+  }
 
   // Create an Axios instance
   const axiosInstance = axios.create({
@@ -49,7 +53,7 @@ export const useRequestService = () => {
 
   const httpGetAsync = async (url: string): Promise<AxiosResponse | null> => {
     try {
-      const resp = await axiosInstance.get(url);
+      const resp = await axiosInstance.get(url, { params: { lang: lang } });
       return resp;
     } catch (error: any) {
       if (error.message.includes('401')) {
@@ -61,7 +65,7 @@ export const useRequestService = () => {
 
   const httpPostAsync = async (url: string, data?: any): Promise<AxiosResponse | null> => {
     try {
-      const resp = await axiosInstance.post(url, data);
+      const resp = await axiosInstance.post(url, data, { params: { lang: lang } });
       return resp;
     } catch (error: any) {
       if (error.message.includes('401')) {

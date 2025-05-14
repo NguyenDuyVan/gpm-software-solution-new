@@ -298,7 +298,8 @@
     "re_signup": "Don’t have an account?",
     "sign_up": "Sign Up",
     "email_required": "Please enter email",
-    "pass_invalid": "Password must be at least 6 characters"
+    "pass_invalid": "Password must be at least 6 characters",
+    "email_invalid": "Email is not valid"
   },
   "sign_up": {
     "title": "Sign up",

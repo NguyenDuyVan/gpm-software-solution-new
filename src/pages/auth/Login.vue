@@ -161,9 +161,9 @@
     zodResolver(
       z.object({
         email: z
-          .string()
+          .string({ required_error: t('login.email_required') })
           .min(1, { message: t('login.email_required') })
-          .email({ message: 'Invalid email address.' }),
+          .email({ message: t('login.email_invalid') }),
         password: z.string().min(6, { message: t('login.pass_invalid') }),
       })
     )

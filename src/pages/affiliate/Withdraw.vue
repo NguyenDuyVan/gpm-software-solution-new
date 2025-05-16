@@ -144,10 +144,10 @@
   });
 
   const { createAffiliateOrderAsync, getAffiliateOrdersAsync } = useCustomerService();
-  const { getCurrentUserAsync } = useAuthService();
   const { t, locale } = useI18n();
   const router = useRouter();
   const toast = useToast();
+  const userStore = useUserStore();
 
   const withDrawPoint = ref<number>(0);
   const affOrderObjs = ref<any[]>([]);
@@ -186,9 +186,9 @@
     if (result.success === true) {
       affOrderObjs.value = result.data;
     }
-    const userResult = await getCurrentUserAsync();
-    if (userResult.success === true) {
-      userObj.value = userResult.data;
+    const user = userStore.getCurrentUser;
+    if (user) {
+      userObj.value = user;
     }
     inLoading.value = false;
   });
@@ -213,6 +213,7 @@
         severity: 'error',
         summary: t('affiliate_withdraw.noti.send_withdraw.error1'),
         detail: t('affiliate_withdraw.noti.send_withdraw.error1'),
+        life: 3000,
       });
       return;
     }
@@ -225,6 +226,7 @@
         severity: 'error',
         summary: t('affiliate_withdraw.noti.send_withdraw.error2'),
         detail: t('affiliate_withdraw.noti.send_withdraw.error2'),
+        life: 3000,
       });
 
       return;
@@ -234,6 +236,7 @@
         severity: 'error',
         summary: t('affiliate_withdraw.noti.send_withdraw.error3'),
         detail: t('affiliate_withdraw.noti.send_withdraw.error3'),
+        life: 3000,
       });
       return;
     }
@@ -251,12 +254,14 @@
           severity: 'success',
           summary: 'Tạo lệnh rút tiền thành công',
           detail: 'Lệnh rút tiền đã được tạo thành công.',
+          life: 3000,
         });
       } else {
         toast.add({
           severity: 'error',
           summary: result.message,
           detail: result.message,
+          life: 3000,
         });
       }
     } else {
@@ -264,6 +269,7 @@
         severity: 'error',
         summary: 'Mật khẩu nhập lại không chính xác',
         detail: 'Vui lòng kiểm tra lại mật khẩu của bạn.',
+        life: 3000,
       });
     }
   }

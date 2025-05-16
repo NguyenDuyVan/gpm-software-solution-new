@@ -37,7 +37,7 @@
             </template>
           </Breadcrumb>
 
-          <div class="flex-1 container mx-auto">
+          <div v-if="!isLoading" class="flex-1 container mx-auto">
             <slot />
           </div>
         </div>
@@ -50,6 +50,8 @@
   const route = useRoute();
   const appStore = useAppStore();
   const isMobile = computed(() => appStore.isMobile);
+  const { getCurrentUserAsync } = useAuthService();
+  const userStore = useUserStore();
 
   const home = ref({
     icon: 'pi pi-home',
@@ -84,6 +86,13 @@
     }
   });
 
+  const getUserInfo = async () => {
+    const res = await getCurrentUserAsync();
+    if (res.success) {
+      userStore.setCurrentUser(res.data);
+    }
+  };
+
   const showSidebar = ref(false);
   const toggleSidebar = () => {
     showSidebar.value = !showSidebar.value;
@@ -93,7 +102,11 @@
     showSidebar.value = !isMobile.value;
   });
 
-  onMounted(() => {
+  const isLoading = ref(false);
+  onMounted(async () => {
     showSidebar.value = !isMobile.value;
+    isLoading.value = true;
+    await getUserInfo();
+    isLoading.value = false;
   });
 </script>

@@ -1,0 +1,22 @@
+export type User = {
+  id?: number;
+  email?: string;
+  display_name: string;
+  address?: string;
+  phone_number?: string;
+  tax_code?: string | null;
+  system_role?: string;
+  support_info?: string;
+  affiliate_code?: string;
+  affiliate_verified?: number;
+  affiliate_point?: number;
+  avatar?: string | null;
+  last_login_at?: string;
+  last_login_ip?: string;
+  payment_bank_id?: number | null;
+  payment_bank_name?: string | null;
+  payment_bank_user_name?: string | null;
+  is_active?: number;
+  created_at?: string;
+  updated_at?: string;
+};

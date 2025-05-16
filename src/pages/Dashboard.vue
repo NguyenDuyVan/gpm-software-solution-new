@@ -33,7 +33,7 @@
         </DataTable>
 
         <!-- Mobile view using PrimeVue Card -->
-        <Card class="table-mobile p-0">
+        <Card class="block lg:hidden p-0">
           <template #content>
             <div class="p-grid p-fluid">
               <div class="p-col-12">
@@ -107,13 +107,17 @@
 </template>
 
 <script lang="ts" setup>
+  const { t } = useI18n();
+  const { getDashboardData } = useCustomerService();
+
   definePageMeta({
     layout: 'admin',
     middleware: 'admin',
   });
 
-  const { t } = useI18n();
-  const { getDashboardData } = useCustomerService();
+  useHead({
+    title: t('dashboard_page.document_title'),
+  });
 
   interface User {
     licenses_count: number;
@@ -128,7 +132,6 @@
     aff_data: any[];
   }
 
-  // const toast = useToast();
   const dashboardObj = ref<DashboardData>({
     user: {} as User,
     aff_data: [],
@@ -143,17 +146,6 @@
     }
     isLoading.value = false;
   });
-
-  onUpdated(() => {
-    document.title = t('dashboard_page.document_title');
-  });
-
-  // const copyAffCode = () => {
-  //   if (dashboardObj.value.user.affiliate_code) {
-  //     navigator.clipboard.writeText(dashboardObj.value.user.affiliate_code);
-  //     toast.add({ severity: 'success', summary: t('affiliate_page.noti.coppied'), life: 3000 });
-  //   }
-  // };
 
   const formatDateStr = (dateStr?: string): string => {
     return dateStr ? formatDateString(dateStr) : '';
@@ -212,17 +204,9 @@
     display: block;
   }
 
-  .table-mobile {
-    display: none;
-  }
-
   @media (max-width: 960px) {
     .table-pc {
       display: none;
-    }
-
-    .table-mobile {
-      display: block;
     }
   }
 </style>

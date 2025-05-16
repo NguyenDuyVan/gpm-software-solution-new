@@ -35,7 +35,8 @@
 </template>
 
 <script setup lang="ts">
-  const { loginAsync, getCurrentUserAsync } = useAuthService();
+  const { loginAsync } = useAuthService();
+  const userStore = useUserStore();
 
   const emit = defineEmits(['confirmEvent']);
 
@@ -48,15 +49,13 @@
   };
 
   async function submitAsync() {
-    const result = await getCurrentUserAsync();
-    if (result.success === true) {
-      const email = result.data.email;
-      const loginResult = await loginAsync(email, password.value, '');
-      if (loginResult.success) {
-        emit('confirmEvent', true);
-        setStateModal(false);
-        return;
-      }
+    const email = userStore.getCurrentUser?.email || '';
+    if (!email) return;
+    const loginResult = await loginAsync(email, password.value, '');
+    if (loginResult.success) {
+      emit('confirmEvent', true);
+      setStateModal(false);
+      return;
     }
     setStateModal(false);
     emit('confirmEvent', false);

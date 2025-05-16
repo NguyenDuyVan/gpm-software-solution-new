@@ -3,9 +3,13 @@
     class="bg-white dark:bg-gray-800 z-20 flex items-center justify-between dark:shadow-lg shadow-md relative"
   >
     <CustomTransition name="slide-to-hide">
-      <div v-show="showLogo || isMobile" class="h-16 w-64 px-8 py-4 order-2 md:order-1">
+      <a
+        v-show="showLogo || isMobile"
+        href="/dashboard"
+        class="h-16 w-64 px-8 py-4 order-2 md:order-1"
+      >
         <img src="@/assets/imgs/logo.png" alt="logo" />
-      </div>
+      </a>
     </CustomTransition>
     <div :class="['mx-4 order-1 md:order-2']">
       <Button variant="text" rounded @click="toggleSidebar">

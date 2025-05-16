@@ -1,24 +1,33 @@
+import type { User } from '@/types/user';
 import { defineStore } from 'pinia';
 
 interface UserState {
-  displayName: string;
+  user?: User;
 }
 
 export const useUserStore = defineStore('user', {
   state: (): UserState => ({
-    displayName: '',
+    user: undefined,
   }),
 
   actions: {
     setCurrentUserDisplayName(displayName: string): void {
-      this.displayName = displayName;
+      if (this.user) {
+        this.user.display_name = displayName;
+      }
+    },
+    setCurrentUser(user: User): void {
+      this.user = user;
     },
   },
 
   getters: {
     getCurrentUserLastName: (state): string => {
-      const arr = state.displayName.split(' ');
-      return arr[arr.length - 1];
+      const arr = state.user?.display_name.split(' ');
+      return arr?.length ? arr[arr.length - 1] : '';
+    },
+    getCurrentUser: (state): User | undefined => {
+      return state.user;
     },
   },
 });

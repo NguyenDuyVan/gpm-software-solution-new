@@ -223,8 +223,9 @@
     path: '/my-account',
   });
 
-  const { getCurrentUserAsync, updateCurrentUserAsync } = useAuthService();
+  const { updateCurrentUserAsync } = useAuthService();
   const { getAddressDataAsync } = useAddressProvider();
+  const userStore = useUserStore();
 
   const { t, locale } = useI18n();
   const toast = useToast();
@@ -270,11 +271,12 @@
     document.title = 'My account';
     addressData.value = await getAddressDataAsync();
 
-    const result = await getCurrentUserAsync();
-    if (result.success === true) {
-      userObj.value = { ...result.data, password: '', repassword: '' };
-      if (!userObj.value.support_info) userObj.value.support_info = '{}';
-      supportInfos.value = JSON.parse(userObj.value.support_info);
+    const user = userStore.getCurrentUser;
+    if (user) {
+      userObj.value = { ...user };
+      if (user.support_info) {
+        supportInfos.value = JSON.parse(user.support_info);
+      }
     }
 
     provinceList.value = Object.keys(addressData.value).sort((a, b) => a.localeCompare(b));
@@ -333,24 +335,32 @@
       userObj.value.password.length > 0 &&
       userObj.value.password.length < 6
     ) {
-      toast.add({ severity: 'error', summary: t('my_account.noti.pass_required') });
+      toast.add({ severity: 'error', summary: t('my_account.noti.pass_required'), life: 3000 });
       return;
     }
     if (userObj.value.password && userObj.value.password !== userObj.value.repassword) {
-      toast.add({ severity: 'error', summary: t('my_account.noti.pass_wrong') });
+      toast.add({ severity: 'error', summary: t('my_account.noti.pass_wrong'), life: 3000 });
       return;
     }
     if (liveInVietnam.value) {
       if (!userObj.value.province) {
-        toast.add({ severity: 'error', summary: t('my_account.noti.province_required') });
+        toast.add({
+          severity: 'error',
+          summary: t('my_account.noti.province_required'),
+          life: 3000,
+        });
         return;
       }
       if (!userObj.value.district) {
-        toast.add({ severity: 'error', summary: t('my_account.noti.district_required') });
+        toast.add({
+          severity: 'error',
+          summary: t('my_account.noti.district_required'),
+          life: 3000,
+        });
         return;
       }
       if (!userObj.value.ward) {
-        toast.add({ severity: 'error', summary: t('my_account.noti.ward_required') });
+        toast.add({ severity: 'error', summary: t('my_account.noti.ward_required'), life: 3000 });
         return;
       }
     }
@@ -373,9 +383,9 @@
     const result = await updateCurrentUserAsync(userObj.value);
 
     if (result.success === true) {
-      toast.add({ severity: 'success', summary: t('my_account.noti.success') });
+      toast.add({ severity: 'success', summary: t('my_account.noti.success'), life: 3000 });
     } else {
-      toast.add({ severity: 'error', summary: result.message });
+      toast.add({ severity: 'error', summary: result.message, life: 3000 });
     }
     onSubmiting.value = false;
   }

@@ -1,14 +1,14 @@
 import type { CustomerObject, CustomerUpdateObject } from '@/types/buy';
 
 export function useCustomerInfo(customerObj: CustomerObject) {
-  const { getCurrentUserAsync, updateCurrentUserAsync } = useAuthService();
+  const { updateCurrentUserAsync } = useAuthService();
+  const userStore = useUserStore();
 
   // Load user data
   const loadCustomerData = async (): Promise<void> => {
-    const userResult = await getCurrentUserAsync();
-    if (userResult.data) {
-      const userData = userResult.data;
-      Object.assign(customerObj, userData);
+    const user = userStore.getCurrentUser;
+    if (user) {
+      Object.assign(customerObj, user);
     }
   };
 
